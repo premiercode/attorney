@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<!--
+  PITCH NOTE (Option B, "Modern counsel"): a warm, plain-spoken homepage in stone and sage that starts with the visitor's own situation and treats the first consultation as the product.
+  Look first at the "Start with where you are" guide right under the hero, then at the "What to expect at your first consultation" section.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Hollis &amp; Avery Law | Family law and estate planning in Southlake, Texas (design preview)</title>
+  <meta name="description" content="Family law and estate planning in Southlake, Texas, explained in plain language. See what happens at a first consultation, what to bring, and how to schedule one. Design preview for a fictional firm.">
+  <meta name="theme-color" content="#f5f2ec">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&amp;family=Source+Sans+3:ital,wght@0,400..700;1,400&amp;display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Design preview bar: deliberately styled in monospace with a dashed edge so it reads as part of the preview, not the firm's brand. -->
+  <div class="preview-bar" role="note" aria-label="Design preview notice">
+    <p><span class="preview-bar__pill">Design preview</span> Hollis &amp; Avery Law is a fictional firm; names, phone, address and details are samples. Planned features are shown as samples.</p>
+  </div>
+
+  <header class="site-header">
+    <div class="site-header__utility">
+      <div class="container site-header__utility-inner">
+        <p class="site-header__area">Southlake, Texas <span aria-hidden="true">&middot;</span> Serving families across Tarrant and Denton counties</p>
+        <a class="utility-phone" href="tel:+18175550198">(817) 555-0198 <span class="tag tag--sample">Sample</span></a>
+        <!-- PLACEHOLDER: quick-exit link, confirm with client -->
+        <a class="quick-exit" href="https://weather.com/" rel="noopener noreferrer">Leave this site quickly <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+    <div class="container site-header__main">
+      <a class="brand" href="#top" aria-label="Hollis and Avery Law, PLLC, back to top">
+        <span class="brand__name">Hollis &amp; Avery</span>
+        <span class="brand__sub">Law, PLLC</span>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="#practice">Practice areas</a></li>
+          <li><a href="#consultation">First consultation</a></li>
+          <li><a href="#attorneys">Attorneys</a></li>
+          <li><a href="#faq">Questions</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__actions">
+        <a class="header-phone" href="tel:+18175550198">
+          <span class="header-phone__number">(817) 555-0198</span>
+          <span class="tag tag--sample">Sample number</span>
+        </a>
+        <a class="btn btn--primary btn--sm" href="#contact">Schedule a consultation</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- 2. HERO -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <p class="eyebrow" data-reveal>Family law and estate planning &middot; Southlake, Texas</p>
+          <h1 id="hero-title" class="hero__title" data-reveal>Start with where you are. We&rsquo;ll explain the rest in plain language.</h1>
+          <p class="hero__lede" data-reveal>Hollis &amp; Avery Law is a small family law and estate planning firm. Every new matter begins with a calm first consultation: we listen, walk you through your options, and send a written summary of next steps.</p>
+          <div class="hero__actions" data-reveal>
+            <a class="btn btn--primary btn--lg" href="#contact">Schedule a consultation</a>
+            <a class="btn btn--quiet btn--lg" href="#consultation">What happens at the first meeting</a>
+          </div>
+        </div>
+        <figure class="hero__media" data-reveal>
+          <img
+            src="../assets/img/table-by-window-01-1200.webp"
+            srcset="../assets/img/table-by-window-01-640.webp 640w, ../assets/img/table-by-window-01-1200.webp 1200w, ../assets/img/table-by-window-01-2400.webp 2400w"
+            sizes="(min-width: 1440px) 620px, (min-width: 960px) 44vw, 100vw"
+            width="1200" height="801"
+            alt="A small wooden table and four chairs beside a sunny window"
+            fetchpriority="high">
+          <div class="hero__card">
+            <p class="hero__card-title">Your first consultation <span class="tag tag--sample">Sample</span></p>
+            <ul class="hero__card-list">
+              <li>60 minutes</li>
+              <li>At the office or by video</li>
+              <li>Written next steps afterward</li>
+            </ul>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 3. PRACTICE AREAS (opens with the plain-language situation guide) -->
+    <section class="practice" id="practice" aria-labelledby="practice-title">
+      <div class="container">
+        <div class="guide" aria-labelledby="guide-title">
+          <div class="guide__head" data-reveal>
+            <h2 id="guide-title" class="guide__title">What&rsquo;s going on for you right now?</h2>
+            <p class="guide__intro">Choose the one closest to your situation. It takes you to the plain-language overview.</p>
+          </div>
+          <ul class="guide__grid" role="list">
+            <li data-reveal style="--i:0">
+              <a class="guide-card" href="#divorce">
+                <span class="guide-card__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V11"/><path d="M12 11 6 5"/><path d="M12 11l6-6"/><path d="M6 9V5h4"/><path d="M18 9V5h-4"/></svg>
+                </span>
+                <span class="guide-card__text">&ldquo;I&rsquo;m thinking about divorce.&rdquo;</span>
+                <span class="guide-card__go">Divorce, contested and uncontested&nbsp;<span aria-hidden="true">&rarr;</span></span>
+              </a>
+            </li>
+            <li data-reveal style="--i:1">
+              <a class="guide-card" href="#conservatorship">
+                <span class="guide-card__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17"/><path d="M8 3v4"/><path d="M16 3v4"/><path d="M8 14h3"/><path d="M13 14h3"/><path d="M8 17h3"/></svg>
+                </span>
+                <span class="guide-card__text">&ldquo;We need a parenting plan.&rdquo;</span>
+                <span class="guide-card__go">Conservatorship and child support&nbsp;<span aria-hidden="true">&rarr;</span></span>
+              </a>
+            </li>
+            <li data-reveal style="--i:2">
+              <a class="guide-card" href="#probate">
+                <span class="guide-card__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14Z"/><path d="M5 19 13 11"/></svg>
+                </span>
+                <span class="guide-card__text">&ldquo;Someone in my family has died.&rdquo;</span>
+                <span class="guide-card__go">Probate and estate administration&nbsp;<span aria-hidden="true">&rarr;</span></span>
+              </a>
+            </li>
+            <li data-reveal style="--i:3">
+              <a class="guide-card" href="#wills">
+                <span class="guide-card__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path d="M14 3v4h4"/><path d="m9 14 2 2 4-4"/></svg>
+                </span>
+                <span class="guide-card__text">&ldquo;I want to plan ahead.&rdquo;</span>
+                <span class="guide-card__go">Wills, trusts and powers of attorney&nbsp;<span aria-hidden="true">&rarr;</span></span>
+              </a>
+            </li>
+          </ul>
+          <p class="guide__unsure" data-reveal>Not sure where you fit? That&rsquo;s what the first consultation is for. <a href="#consultation">See how it works</a> or <a href="#faq">read common questions</a>.</p>
+        </div>
+
+        <div class="section-head section-head--split" data-reveal>
+          <div>
+            <p class="eyebrow">Practice areas</p>
+            <h2 id="practice-title" class="section-title">Two areas of law, explained simply</h2>
+          </div>
+          <p class="section-intro">Short overviews of the Texas terms you&rsquo;re likely to see. Your own situation will have its own details, and we&rsquo;ll talk them through at the consultation.</p>
+        </div>
+
+        <div class="practice__groups">
+          <article class="practice-group practice-group--family" aria-labelledby="family-title" data-reveal>
+            <div class="practice-group__media">
+              <img
+                src="../assets/img/tree-lined-street-01-1200.webp"
+                srcset="../assets/img/tree-lined-street-01-640.webp 640w, ../assets/img/tree-lined-street-01-1200.webp 1200w, ../assets/img/tree-lined-street-01-2040.webp 2040w"
+                sizes="(min-width: 1440px) 760px, (min-width: 960px) 55vw, 100vw"
+                width="1200" height="1236"
+                alt="A quiet residential street curving beneath tall green trees"
+                loading="lazy">
+            </div>
+            <div class="practice-group__body">
+              <h3 id="family-title" class="practice-group__title">Family Law</h3>
+              <ul class="practice-list" role="list">
+                <li id="divorce">
+                  <h4>Divorce, contested and uncontested</h4>
+                  <p>Texas allows a no-fault divorce when a marriage has become &ldquo;insupportable.&rdquo; Uncontested means both spouses agree on every issue; contested means they don&rsquo;t.</p>
+                </li>
+                <li id="conservatorship">
+                  <h4>Conservatorship (custody) and child support</h4>
+                  <p>Texas law calls custody &ldquo;conservatorship&rdquo; and visitation &ldquo;possession and access.&rdquo; The child&rsquo;s best interest is always the court&rsquo;s primary consideration.</p>
+                </li>
+                <li id="modifications">
+                  <h4>Modifications and enforcement</h4>
+                  <p>Orders can be changed when circumstances have materially and substantially changed. When an order isn&rsquo;t followed, a court can enforce it.</p>
+                </li>
+                <li id="agreements">
+                  <h4>Premarital and marital property agreements</h4>
+                  <p>Texas&rsquo;s terms for prenups and postnups. They must be in writing and signed by both spouses, and they can&rsquo;t reduce a child&rsquo;s right to support.</p>
+                </li>
+                <li id="adoption">
+                  <h4>Adoption</h4>
+                  <p>It creates a permanent legal parent-child relationship. Stepparent, relative and agency adoptions are common paths, and the court must find the adoption is in the child&rsquo;s best interest.</p>
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="practice-group practice-group--estate" aria-labelledby="estate-title" data-reveal style="--i:1">
+            <div class="practice-group__media">
+              <img
+                src="../assets/img/live-oak-prairie-01-1200.webp"
+                srcset="../assets/img/live-oak-prairie-01-640.webp 640w, ../assets/img/live-oak-prairie-01-1200.webp 1200w, ../assets/img/live-oak-prairie-01-1600.webp 1600w"
+                sizes="(min-width: 1440px) 560px, (min-width: 960px) 42vw, 100vw"
+                width="1200" height="1600"
+                alt="A broad oak tree shading cattle in a tall-grass pasture"
+                loading="lazy">
+            </div>
+            <div class="practice-group__body">
+              <h3 id="estate-title" class="practice-group__title">Estate Planning &amp; Probate</h3>
+              <ul class="practice-list" role="list">
+                <li id="wills">
+                  <h4>Wills, trusts and powers of attorney</h4>
+                  <p>A statutory durable power of attorney covers financial matters. A medical power of attorney and a directive to physicians cover health-care choices.</p>
+                </li>
+                <li id="probate">
+                  <h4>Probate and estate administration</h4>
+                  <p>A Texas will generally must be offered for probate within four years of death. Many estates use independent administration, with limited court supervision, and some can use a muniment of title or a small estate affidavit.</p>
+                </li>
+                <li id="guardianship">
+                  <h4>Guardianship</h4>
+                  <p>A court-supervised arrangement for a minor or an adult who can&rsquo;t manage their own care or finances. Texas requires the court to consider less restrictive alternatives first, such as powers of attorney or supported decision-making.</p>
+                </li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. FIRST CONSULTATION -->
+    <section class="consult" id="consultation" aria-labelledby="consult-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">What to expect</p>
+          <h2 id="consult-title" class="section-title">What to expect at your first consultation</h2>
+          <p class="section-intro">No surprises. Here is how a first meeting works, from the first call to the written summary you take home.</p>
+        </div>
+
+        <div class="consult__layout">
+          <ol class="steps" role="list">
+            <li class="step" data-reveal style="--i:0">
+              <span class="step__num" aria-hidden="true">1</span>
+              <div>
+                <h3 class="step__title">Call or send the form</h3>
+                <p>Reach us by phone or with the short form below. A few general details are all we need to start.</p>
+              </div>
+            </li>
+            <li class="step" data-reveal style="--i:1">
+              <span class="step__num" aria-hidden="true">2</span>
+              <div>
+                <h3 class="step__title">A short conflict check</h3>
+                <p>Before you share any details, we check that we have no conflict with anyone else involved, so we know we can help.</p>
+              </div>
+            </li>
+            <li class="step" data-reveal style="--i:2">
+              <span class="step__num" aria-hidden="true">3</span>
+              <div>
+                <h3 class="step__title">The meeting</h3>
+                <p>We listen first, then explain your options in plain language and answer your questions. Companions usually wait outside, to protect confidentiality.</p>
+              </div>
+            </li>
+            <li class="step" data-reveal style="--i:3">
+              <span class="step__num" aria-hidden="true">4</span>
+              <div>
+                <h3 class="step__title">A written summary</h3>
+                <p>Afterward you receive a written summary of next steps and fee options, so you can decide in your own time.</p>
+              </div>
+            </li>
+          </ol>
+
+          <div class="consult__aside">
+            <!-- PLACEHOLDER: consultation fee and format -->
+            <div class="fee-card" data-reveal>
+              <p class="fee-card__label"><span class="tag tag--sample">Sample fee and format</span></p>
+              <dl class="fee-card__grid">
+                <div><dt>Length</dt><dd>60 minutes</dd></div>
+                <div><dt>Where</dt><dd>At the office or by video</dd></div>
+                <div><dt>Fee</dt><dd>Flat $150</dd></div>
+              </dl>
+              <a class="btn btn--primary btn--block" href="#contact">Schedule a consultation</a>
+            </div>
+
+            <div class="bring-card" data-reveal style="--i:1">
+              <div class="bring-card__media">
+                <img
+                  src="../assets/img/notebook-coffee-01-640.webp"
+                  srcset="../assets/img/notebook-coffee-01-640.webp 640w, ../assets/img/notebook-coffee-01-1200.webp 1200w"
+                  sizes="(min-width: 960px) 200px, 40vw"
+                  width="640" height="640"
+                  alt="An open notebook and pencil beside a cup of black coffee"
+                  loading="lazy">
+              </div>
+              <div class="bring-card__body">
+                <h3 class="bring-card__title">What to bring</h3>
+                <p>Before your first meeting, it helps to gather a photo ID, any court papers already filed, and any existing orders or agreements.</p>
+                <p>For estate planning, bring a list of what you own and how it&rsquo;s titled, your current beneficiary designations, and any wills or trusts you already have.</p>
+              </div>
+            </div>
+
+            <p class="honest-note" data-reveal>
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6"/><path d="M12 7.5v.5"/></svg>
+              <span><strong>An honest note:</strong> no attorney can guarantee the outcome of your case. What we can promise is a clear explanation of your options and the process ahead.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. ATTORNEYS -->
+    <section class="attorneys" id="attorneys" aria-labelledby="attorneys-title">
+      <div class="container">
+        <div class="section-head section-head--split" data-reveal>
+          <div>
+            <p class="eyebrow">Attorneys</p>
+            <h2 id="attorneys-title" class="section-title">The people you&rsquo;ll meet</h2>
+          </div>
+          <p class="section-intro">Two founding members, one focused on families in transition and one on planning and estates.</p>
+        </div>
+        <div class="attorney-grid">
+          <article class="attorney" aria-labelledby="elena-name" data-reveal style="--i:0">
+            <div class="attorney__initials" aria-hidden="true">EH</div>
+            <div class="attorney__body">
+              <p class="attorney__label"><span class="tag tag--sample">Fictional attorney</span></p>
+              <h3 id="elena-name" class="attorney__name">Elena Hollis</h3>
+              <p class="attorney__role">Founding member</p>
+              <p>Practice focused on family law: divorce, conservatorship, modifications.</p>
+              <ul class="attorney__meta" role="list">
+                <li>Member, State Bar of Texas, licensed since 2009 <span class="muted">(sample)</span></li>
+                <li>Attorney responsible for this site&rsquo;s content</li>
+              </ul>
+            </div>
+          </article>
+          <article class="attorney" aria-labelledby="thomas-name" data-reveal style="--i:1">
+            <div class="attorney__initials attorney__initials--alt" aria-hidden="true">TA</div>
+            <div class="attorney__body">
+              <p class="attorney__label"><span class="tag tag--sample">Fictional attorney</span></p>
+              <h3 id="thomas-name" class="attorney__name">Thomas Avery</h3>
+              <p class="attorney__role">Founding member</p>
+              <p>Practice focused on estate planning, probate and guardianship.</p>
+              <ul class="attorney__meta" role="list">
+                <li>Member, State Bar of Texas, licensed since 2012 <span class="muted">(sample)</span></li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. OUR APPROACH -->
+    <section class="approach" id="approach" aria-labelledby="approach-title">
+      <div class="container approach__inner">
+        <figure class="approach__media" data-reveal>
+          <img
+            src="../assets/img/grandparent-baby-hands-01-1200.webp"
+            srcset="../assets/img/grandparent-baby-hands-01-640.webp 640w, ../assets/img/grandparent-baby-hands-01-1200.webp 1200w, ../assets/img/grandparent-baby-hands-01-2400.webp 2400w"
+            sizes="(min-width: 1440px) 560px, (min-width: 960px) 40vw, 100vw"
+            width="1200" height="801"
+            alt="An older hand gently holding a baby's small hand"
+            loading="lazy">
+        </figure>
+        <div class="approach__copy">
+          <p class="eyebrow eyebrow--light" data-reveal>Our approach</p>
+          <h2 id="approach-title" class="section-title" data-reveal>How we try to work with every family</h2>
+          <ul class="values" role="list">
+            <li data-reveal style="--i:0">
+              <h3>Calm, clear explanations</h3>
+              <p>We use plain language, and we&rsquo;ll explain a legal term as many times as you need.</p>
+            </li>
+            <li data-reveal style="--i:1">
+              <h3>Fees explained up front</h3>
+              <p>You&rsquo;ll know how fees work before you decide anything.</p>
+            </li>
+            <li data-reveal style="--i:2">
+              <h3>Discretion</h3>
+              <p>Family matters are private. We handle yours quietly and carefully.</p>
+            </li>
+            <li data-reveal style="--i:3">
+              <h3>Settle where possible, prepare where needed</h3>
+              <p>We look for workable agreements first, and prepare carefully for court when a case needs it.</p>
+            </li>
+            <li data-reveal style="--i:4">
+              <h3>We return calls</h3>
+              <p>Waiting to hear back is hard. We make a point of getting back to you.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. FAQ -->
+    <section class="faq" id="faq" aria-labelledby="faq-title">
+      <div class="container faq__inner">
+        <div class="faq__head" data-reveal>
+          <p class="eyebrow">Common questions</p>
+          <h2 id="faq-title" class="section-title">Questions people often ask</h2>
+          <div class="faq__notice">
+            <p class="faq__notice-title">General information, not legal advice</p>
+            <p class="faq__reviewed">Reviewed by: [attorney name]</p>
+            <!-- PLACEHOLDER: attorney review of FAQ -->
+          </div>
+          <p class="faq__more">Have a question that isn&rsquo;t here? <a href="#contact">Ask at your consultation.</a></p>
+        </div>
+        <div class="faq__list">
+          <details id="faq-community-property" data-reveal>
+            <summary>Is Texas a community property state?</summary>
+            <div class="faq__answer">
+              <p>Yes. Property either spouse acquires during the marriage is generally community property. Separate property includes what a spouse owned before marriage and gifts or inheritances received during it. A court divides community property in a way it finds &ldquo;just and right,&rdquo; which is not always 50/50.</p>
+              <p class="cite">Tex. Fam. Code &sect;&sect; 3.001&ndash;3.003, 7.001</p>
+            </div>
+          </details>
+          <details id="faq-divorce-time" data-reveal>
+            <summary>How long does a Texas divorce take?</summary>
+            <div class="faq__answer">
+              <p>A court generally can&rsquo;t grant a divorce until at least 60 days after the petition is filed, with limited exceptions involving family violence. Many cases take longer.</p>
+              <p class="cite">Tex. Fam. Code &sect; 6.702</p>
+            </div>
+          </details>
+          <details id="faq-conservatorship" data-reveal>
+            <summary>What&rsquo;s the difference between custody and conservatorship?</summary>
+            <div class="faq__answer">
+              <p>None in everyday meaning. Texas law uses &ldquo;conservatorship.&rdquo; Joint managing conservatorship means sharing parental rights and duties, not necessarily equal time.</p>
+              <p class="cite">Tex. Fam. Code &sect;&sect; 101.016, 153.131</p>
+            </div>
+          </details>
+          <details id="faq-child-support" data-reveal>
+            <summary>How is child support calculated?</summary>
+            <div class="faq__answer">
+              <p>Texas uses guideline percentages of the paying parent&rsquo;s net resources, starting at 20% for one child, up to a cap that is adjusted over time. The cap is $11,700 a month as of Sept. 1, 2025.</p>
+              <p class="cite">Tex. Fam. Code &sect; 154.125</p>
+            </div>
+          </details>
+          <details id="faq-will-probate" data-reveal>
+            <summary>Does a will avoid probate?</summary>
+            <div class="faq__answer">
+              <p>No. A Texas will generally must be admitted to probate to transfer property, though assets with named beneficiaries or survivorship rights can pass outside probate.</p>
+              <p class="cite">Tex. Est. Code &sect; 256.001</p>
+            </div>
+          </details>
+          <details id="faq-poa-medical" data-reveal>
+            <summary>Can a financial power of attorney make medical decisions?</summary>
+            <div class="faq__answer">
+              <p>No. The statutory durable power of attorney covers property and finances. Health-care decisions need a medical power of attorney.</p>
+              <p class="cite">Tex. Est. Code ch. 752; Tex. Health &amp; Safety Code ch. 166</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. INSIGHTS -->
+    <section class="insights" id="insights" aria-labelledby="insights-title">
+      <div class="container">
+        <div class="section-head section-head--split" data-reveal>
+          <div>
+            <p class="eyebrow">Insights</p>
+            <h2 id="insights-title" class="section-title">Plain-language reading</h2>
+          </div>
+          <p class="section-intro">Short guides to the terms and paths families run into most. Shown here as samples of planned articles.</p>
+        </div>
+        <ul class="insight-grid" role="list">
+          <li data-reveal style="--i:0">
+            <article class="insight">
+              <p class="insight__meta"><span class="insight__topic">Family law</span> <span class="tag tag--sample">Sample article</span></p>
+              <h3 class="insight__title">Why Texas says &ldquo;conservatorship,&rdquo; not &ldquo;custody&rdquo;</h3>
+              <p>Texas law uses &ldquo;conservatorship&rdquo; for a parent&rsquo;s rights and duties and &ldquo;possession and access&rdquo; for parenting time, and knowing the terms makes court papers easier to read.</p>
+              <a class="insight__link" href="#" aria-disabled="true">Full article coming soon <span class="visually-hidden">(sample, not yet available)</span></a>
+            </article>
+          </li>
+          <li data-reveal style="--i:1">
+            <article class="insight">
+              <p class="insight__meta"><span class="insight__topic">Probate</span> <span class="tag tag--sample">Sample article</span></p>
+              <h3 class="insight__title">Muniment of title: a simpler probate path some Texas families can use</h3>
+              <p>When an estate has no unpaid debts other than those secured by real estate, a Texas court may admit a will as a muniment of title, which transfers property without appointing an executor.</p>
+              <a class="insight__link" href="#" aria-disabled="true">Full article coming soon <span class="visually-hidden">(sample, not yet available)</span></a>
+            </article>
+          </li>
+          <li data-reveal style="--i:2">
+            <article class="insight">
+              <p class="insight__meta"><span class="insight__topic">Estate planning</span> <span class="tag tag--sample">Sample article</span></p>
+              <h3 class="insight__title">Medical power of attorney vs. directive to physicians</h3>
+              <p>A medical power of attorney names someone to make health-care decisions if a doctor certifies you can&rsquo;t, while a directive to physicians records your own wishes about life-sustaining treatment.</p>
+              <a class="insight__link" href="#" aria-disabled="true">Full article coming soon <span class="visually-hidden">(sample, not yet available)</span></a>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 9. CONTACT + FORM -->
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact__inner">
+        <div class="contact__info">
+          <div data-reveal>
+            <p class="eyebrow">Contact</p>
+            <h2 id="contact-title" class="section-title">Schedule a consultation</h2>
+            <p class="section-intro">Call, or send a few general details and we&rsquo;ll get back to you to set up a time. Serving families across Tarrant and Denton counties.</p>
+          </div>
+
+          <figure class="contact__media" data-reveal>
+            <img
+              src="../assets/img/porch-rocking-chairs-01-1200.webp"
+              srcset="../assets/img/porch-rocking-chairs-01-640.webp 640w, ../assets/img/porch-rocking-chairs-01-1200.webp 1200w, ../assets/img/porch-rocking-chairs-01-2400.webp 2400w"
+              sizes="(min-width: 1440px) 560px, (min-width: 960px) 40vw, 100vw"
+              width="1200" height="801"
+              alt="Two rocking chairs and a small table on a sunny front porch"
+              loading="lazy">
+          </figure>
+
+          <dl class="contact-list" data-reveal>
+            <div>
+              <dt>Phone <span class="tag tag--sample">Sample number</span></dt>
+              <dd><a href="tel:+18175550198">(817) 555-0198</a></dd>
+            </div>
+            <div>
+              <dt>Email <span class="tag tag--sample">Sample</span></dt>
+              <dd><a href="mailto:hello@example.com">hello@example.com</a></dd>
+            </div>
+            <div>
+              <dt>Office <span class="tag tag--sample">Sample address</span></dt>
+              <dd>1234 Main Street, Anytown, TX</dd>
+            </div>
+            <div>
+              <dt>Hours <span class="tag tag--sample">Sample hours</span></dt>
+              <dd>Monday to Friday, 8:30 a.m. to 5:30 p.m.<br>Evening video consultations by appointment</dd>
+            </div>
+            <div class="contact-list__wide">
+              <dt>Service area</dt>
+              <dd>
+                <ul class="city-list" role="list">
+                  <li>Southlake</li><li>Grapevine</li><li>Colleyville</li><li>Keller</li><li>Trophy Club</li><li>Roanoke</li>
+                </ul>
+              </dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="form-card" data-reveal>
+          <div class="form-card__head">
+            <h3 class="form-card__title">Request a consultation</h3>
+            <p class="form-note">Preview form: nothing is sent.</p>
+          </div>
+          <form class="consult-form" method="dialog" id="consult-form" aria-describedby="form-required-note">
+            <p class="form-required" id="form-required-note">All fields are required unless marked optional.</p>
+
+            <div class="field">
+              <label for="f-name">Name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err">
+              <p class="field__error" id="f-name-err" hidden>Please enter your name.</p>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="f-phone">Phone</label>
+                <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required pattern="[0-9()+\-.\s]{7,}" aria-describedby="f-phone-err">
+                <p class="field__error" id="f-phone-err" hidden>Please enter a phone number we can reach you at.</p>
+              </div>
+              <div class="field">
+                <label for="f-email">Email</label>
+                <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-err">
+                <p class="field__error" id="f-email-err" hidden>Please enter an email address, like name@example.com.</p>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="f-area">Practice area</label>
+                <select id="f-area" name="practice_area" required aria-describedby="f-area-err">
+                  <option value="">Choose one</option>
+                  <optgroup label="Family Law">
+                    <option>Divorce, contested and uncontested</option>
+                    <option>Conservatorship (custody) and child support</option>
+                    <option>Modifications and enforcement</option>
+                    <option>Premarital and marital property agreements</option>
+                    <option>Adoption</option>
+                  </optgroup>
+                  <optgroup label="Estate Planning &amp; Probate">
+                    <option>Wills, trusts and powers of attorney</option>
+                    <option>Probate and estate administration</option>
+                    <option>Guardianship</option>
+                  </optgroup>
+                  <option>Not sure</option>
+                </select>
+                <p class="field__error" id="f-area-err" hidden>Please choose a practice area, or &ldquo;Not sure.&rdquo;</p>
+              </div>
+              <div class="field">
+                <label for="f-time">Best time to call</label>
+                <select id="f-time" name="best_time" required aria-describedby="f-time-err">
+                  <option value="">Choose one</option>
+                  <option>Morning (8:30 a.m. to noon)</option>
+                  <option>Afternoon (noon to 5:30 p.m.)</option>
+                  <option>Evening (video consultation by appointment)</option>
+                  <option>Any time</option>
+                </select>
+                <p class="field__error" id="f-time-err" hidden>Please choose a time that suits you.</p>
+              </div>
+            </div>
+
+            <fieldset class="field field--radios" aria-describedby="f-method-err">
+              <legend>Preferred contact method</legend>
+              <div class="radio-row">
+                <label class="choice"><input type="radio" name="contact_method" value="phone" required> <span>Phone</span></label>
+                <label class="choice"><input type="radio" name="contact_method" value="email"> <span>Email</span></label>
+                <label class="choice"><input type="radio" name="contact_method" value="text"> <span>Text</span></label>
+              </div>
+              <p class="field__error" id="f-method-err" hidden>Please choose how you&rsquo;d like us to reach you.</p>
+            </fieldset>
+
+            <div class="field">
+              <label for="f-msg">Briefly, what can we help with? General details only</label>
+              <textarea id="f-msg" name="message" rows="4" maxlength="300" required aria-describedby="f-msg-hint f-msg-err"></textarea>
+              <p class="field__hint" id="f-msg-hint"><span data-count>0</span>/300 characters. Please leave out names, account numbers and other private details.</p>
+              <p class="field__error" id="f-msg-err" hidden>Please add a sentence or two about what you need.</p>
+            </div>
+
+            <!-- Honeypot: hidden from people and assistive tech. Bots that auto-fill every field will fill this one, and the server should silently discard any submission where it isn't empty. -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="f-company-website">Company website</label>
+              <input id="f-company-website" name="company_website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+
+            <!-- PLACEHOLDER: reCAPTCHA v3 script and token field go here at launch -->
+            <input type="hidden" name="g-recaptcha-response" value="">
+
+            <p class="form-legal">Submitting this form does not create an attorney-client relationship. Please don&rsquo;t send confidential information.</p>
+
+            <div class="field field--check">
+              <label class="choice choice--check">
+                <input id="f-ack" name="acknowledge" type="checkbox" required aria-describedby="f-ack-err">
+                <span>I understand.</span>
+              </label>
+              <p class="field__error" id="f-ack-err" hidden>Please confirm you&rsquo;ve read the note above.</p>
+            </div>
+
+            <button class="btn btn--primary btn--lg btn--block" type="submit">Request my consultation</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 10. FOOTER -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div class="site-footer__brand">
+        <p class="site-footer__name">Hollis &amp; Avery Law, PLLC <span class="muted">(fictional)</span></p>
+        <p>Attorney responsible for this site: Elena Hollis (fictional attorney)</p>
+        <p>1234 Main Street, Anytown, TX (sample address)</p>
+      </div>
+      <div class="site-footer__legal">
+        <p>This website is for general information and is not legal advice.</p>
+        <p>Photos are royalty-free stock and do not show the firm, its people or clients. <a href="../credits.html">Photo credits</a></p>
+        <p class="site-footer__studio">Design preview prepared by Premier Code Inc.</p>
+      </div>
+    </div>
+  </footer>
+<!-- REMOVE AT LAUNCH: option switcher -->
+<!-- Copy this block unchanged to the end of <body> on every option page, just before </body>.
+     Per page, move aria-current="page" and the "on" class to that page's own link. Change nothing else.
+     Links are relative to option-a/, option-b/ and option-c/ folders (one level below the site root). -->
+<style class="pv-style">
+  html { scroll-padding-bottom: 6rem; }
+  footer, .site-footer, body > :last-of-type:not(script):not(nav) { padding-bottom: max(env(safe-area-inset-bottom), 5rem); }
+  .pv-switch {
+    position: fixed; left: 8px; bottom: 8px; z-index: 9999;
+    display: flex; gap: 2px; padding: 3px;
+    background: #fff; border: 1px solid #c8ccd2; border-radius: 10px;
+    box-shadow: 0 4px 18px rgba(0,0,0,.28);
+    font: 600 14px/1.2 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .pv-switch a {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 44px; padding: 0 14px; border-radius: 7px;
+    color: #111; background: transparent; text-decoration: none; white-space: nowrap;
+  }
+  .pv-switch a:hover { background: #eceef1; }
+  .pv-switch a.on { color: #fff; background: #111; }
+  .pv-switch a:focus-visible { outline: 3px solid #1a73e8; outline-offset: 1px; }
+  @media (max-width: 420px) { .pv-switch a { padding: 0 11px; font-size: 13px; } }
+  @media print { .pv-switch { display: none; } }
+</style>
+<nav class="pv-switch" aria-label="Design options">
+  <a href="../option-a/">Option A</a>
+  <a href="../option-b/" class="on" aria-current="page">Option B</a>
+  <a href="../option-c/">Option C</a>
+</nav>
+<!-- /REMOVE AT LAUNCH -->
+</body>
+</html>

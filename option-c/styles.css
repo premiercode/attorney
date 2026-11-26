@@ -764,3 +764,12 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline-offs
   .preview-bar, .site-nav, .header-actions, .form-wrap, .skip-link { display: none; }
   body { background: #fff; }
 }
+
+/* ---------- Switcher compatibility ----------
+   The shared switcher adds 5rem bottom padding to `body > :last-of-type`, which hits
+   every top-level tag type. Restore intended padding with stronger selectors. */
+body > a.skip-link.skip-link:not(#\#) { padding: 0.75rem 1rem; }
+body > div.preview-bar.preview-bar:not(#\#) { padding: 0; }
+body > header.site-header.site-header:not(#\#) { padding: 0; }
+body > main:not(#\#) { padding: 0; }
+body > footer.site-footer.site-footer:not(#\#) { padding-bottom: max(env(safe-area-inset-bottom), 6.5rem); }

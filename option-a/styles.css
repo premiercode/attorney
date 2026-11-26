@@ -58,7 +58,8 @@
     text-size-adjust: 100%;
   }
   @media (min-width: 960px) { html { scroll-padding-top: 8rem; } }
-  @media (min-width: 2400px) { html { font-size: 118.75%; } :root { --container: 1400px; } }
+  @media (min-width: 2400px) { html { font-size: 125%; } :root { --container: 1440px; } }
+  @media (min-width: 3000px) { html { font-size: 137.5%; } }
 
   body {
     font-family: var(--font-text);
@@ -118,7 +119,7 @@
     white-space: nowrap;
   }
   @media (min-width: 640px) {
-    .sm-hidden { position: static; width: auto; height: auto; overflow: visible; clip: auto; clip-path: none; white-space: normal; }
+    .sm-hidden { position: static; width: auto; height: auto; overflow: visible; clip: auto; clip-path: none; white-space: nowrap; }
   }
 }
 
@@ -244,7 +245,7 @@
     align-items: center;
     gap: 0.6rem 1rem;
   }
-  .brand { grid-area: brand; text-decoration: none; display: inline-flex; flex-direction: column; line-height: 1; padding-block: 0.2rem; }
+  .brand { grid-area: brand; white-space: nowrap; text-decoration: none; display: inline-flex; flex-direction: column; line-height: 1; padding-block: 0.2rem; }
   .brand__name {
     font-family: var(--font-display);
     font-size: 1.6rem;
@@ -260,6 +261,18 @@
     margin-top: 0.35rem;
   }
   .header-cta { grid-area: cta; }
+  .header-cta { min-width: max-content; }
+  .header-cta > * { flex-shrink: 0; }
+  @media (max-width: 479px) {
+    .utility__inner { flex-wrap: nowrap; padding-inline: 1rem; gap: 0.5rem; font-size: 0.75rem; }
+    .header-phone { gap: 0.35rem; }
+    .header-phone .tag { padding-inline: 0.3rem; letter-spacing: 0.06em; }
+    .quick-exit { white-space: nowrap; }
+    .site-header__inner { padding-top: 0.6rem; gap: 0.4rem 1rem; }
+    .hero__content { padding-top: 2.25rem; }
+    .hero__title { margin-top: 1.25rem; }
+    .hero__lede { font-size: 1rem; line-height: 1.6; margin-top: 1.25rem; }
+  }
 
   .site-nav { grid-area: nav; margin-inline: calc(var(--gutter) * -1); overflow-x: auto; scrollbar-width: none; border-top: 1px solid rgba(255, 255, 255, 0.07); }
   .site-nav::-webkit-scrollbar { display: none; }
@@ -973,3 +986,15 @@
     }
   }
 }
+
+/* ------------------------------------------------------------------------
+   Unlayered overrides for the shared preview switcher's padding rule
+   (`body > :last-of-type:not(script):not(nav)` adds 5rem to the last element
+   of each tag under <body>). Unlayered + higher specificity restores ours.
+   The footer keeps more than 5rem of bottom clearance for the switcher.
+   ------------------------------------------------------------------------ */
+body > a.skip-link.skip-link { padding-bottom: 0.75rem; }
+body > div.preview-bar.preview-bar { padding-bottom: 0.5rem; }
+body > header.site-header.site-header { padding-bottom: 0; }
+body > main#main { padding-bottom: 0; }
+body > footer.site-footer.site-footer { padding-bottom: max(env(safe-area-inset-bottom), 7rem); }

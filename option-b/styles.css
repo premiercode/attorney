@@ -118,7 +118,7 @@ main:focus { outline: none; }
 }
 
 .skip-link {
-  position: absolute; left: var(--space-4); top: -100px; z-index: 100;
+  position: absolute; left: var(--space-4); top: -200px; z-index: 100;
   padding: var(--space-3) var(--space-5);
   background: var(--ink); color: #fff; border-radius: var(--radius-sm);
   font-weight: 600; text-decoration: none;
@@ -151,7 +151,7 @@ main:focus { outline: none; }
   font-size: 0.75rem;
   line-height: 1.5;
 }
-.preview-bar p { max-width: 1400px; margin-inline: auto; padding: 0.5rem var(--gutter); }
+.preview-bar p { max-width: max(1400px, var(--container)); margin-inline: auto; padding: 0.5rem var(--gutter); }
 .preview-bar__pill {
   display: inline-block; margin-right: 0.5rem; padding: 0 0.5rem;
   border: 1px dashed #d8d2c4; border-radius: var(--radius-full);
@@ -726,11 +726,17 @@ fieldset.field { border: 0; margin: 0; padding: 0; }
 
 @media (min-width: 2200px) {
   html { font-size: 112.5%; }
-  :root { --container: 80rem; }
+  :root { --container: 82rem; }
+}
+
+@media (min-width: 2400px) {
+  html { font-size: 125%; }
+  :root { --container: 88rem; }
 }
 
 @media (min-width: 3000px) {
-  html { font-size: 125%; }
+  html { font-size: 137.5%; }
+  :root { --container: 96rem; }
 }
 
 /* ==========================================================================
@@ -755,6 +761,15 @@ fieldset.field { border: 0; margin: 0; padding: 0; }
   }
   .guide-card:hover, .attorney:hover, .insight:hover, .btn--primary:hover { transform: none; }
 }
+
+/* ---------- Guard against the shared switcher's padding rule ----------
+   The switcher adds `body > :last-of-type { padding-bottom: 5rem }`, which hits the last
+   <a>, <div>, <header> and <main> under <body>. These stronger selectors restore our own values. */
+body > a.skip-link:not(#\#) { padding-bottom: var(--space-3); }
+body > div.preview-bar:not(#\#) { padding-bottom: 0; }
+body > header.site-header:not(#\#) { padding-bottom: 0; }
+body > main:not(#\#) { padding-bottom: 0; }
+body > footer.site-footer:not(#\#) { padding-bottom: max(env(safe-area-inset-bottom), calc(5rem + var(--space-8))); }
 
 @media print {
   .preview-bar, .site-nav, .quick-exit, .form-card { display: none; }

@@ -64,8 +64,7 @@
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
   }
-  /* Large screens: scale the whole system so 3200px reads like 1600px, not a postage stamp. */
-  @media (min-width: 2200px) { html { font-size: 125%; } }
+  /* No root font-size bump on large screens: a px media query on html would cancel browser zoom (WCAG 1.4.4). */
 
   body {
     font-family: var(--font-body);
@@ -125,7 +124,7 @@
     padding: 0.75rem 1.25rem; border-radius: var(--radius);
     font-weight: 600; text-decoration: none;
   }
-  .skip:focus { top: 1rem; outline: 3px solid var(--brass-light); outline-offset: 2px; }
+  .skip:focus { top: 1rem; outline: 3px solid var(--teal-ink); outline-offset: 2px; }
 
   /* ---------- Design preview bar: deliberately outside the brand ---------- */
   .preview-bar {
@@ -262,7 +261,6 @@
   }
   /* 360px and up: the phone and quick exit share one row. Narrower screens may wrap. */
   @media (min-width: 360px) and (max-width: 559px) {
-    .utility__actions { flex-wrap: nowrap; }
     .utility__phone { flex-wrap: nowrap; white-space: nowrap; }
     .quick-exit { white-space: nowrap; }
   }

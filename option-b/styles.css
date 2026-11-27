@@ -45,9 +45,7 @@
   --gutter: clamp(1.125rem, 4vw, 2.5rem);
 }
 
-/* Large displays: scale the whole rem system so 3200px doesn't feel like a postage stamp. */
-@media (min-width: 2400px) { html { font-size: 125%; } }
-@media (min-width: 2800px) { html { font-size: 150%; } }
+/* No root font-size bump on large displays: a px media query on html would cancel browser zoom (WCAG 1.4.4). */
 
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }

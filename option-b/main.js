@@ -16,7 +16,11 @@
     menu.addEventListener('click', function (e) {
       if (e.target.closest('a')) menu.open = false;
     });
-    menu.addEventListener('keydown', function (e) {
+    // Close when keyboard focus leaves the menu, so the open panel can't cover the next focused control.
+    menu.addEventListener('focusout', function (e) {
+      if (menu.open && e.relatedTarget && !menu.contains(e.relatedTarget)) menu.open = false;
+    });
+    document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && menu.open) {
         menu.open = false;
         menu.querySelector('summary').focus();
@@ -45,6 +49,7 @@
   /* Preview form: validate natively, show inline errors, never send anything. */
   var form = document.querySelector('.consult-form');
   if (!form) return;
+  form.noValidate = true; /* JS shows inline errors; without JS the browser's native validation runs. */
   var status = form.querySelector('#form-status');
   var statusTimer = null;
 

@@ -42,6 +42,20 @@
         <span class="firm-name__main">Hollis &amp; Avery</span>
         <span class="firm-name__sub">Law, PLLC</span>
       </a>
+      <details class="mobile-menu">
+        <summary class="mobile-menu__toggle"><span>Menu</span></summary>
+        <nav class="mobile-menu__panel" aria-label="Main">
+          <ul>
+            <li><a href="#practice-areas">Practice areas</a></li>
+            <li><a href="#consultation">First consultation</a></li>
+            <li><a href="#attorneys">Attorneys</a></li>
+            <li><a href="#approach">Our approach</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#insights">Insights</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </details>
 
       <div class="masthead__contact">
         <a class="contact-widget" href="tel:+18175550198">
@@ -60,21 +74,6 @@
         </a>
         <a class="btn btn--primary masthead__cta" href="#contact">Schedule a consultation</a>
       </div>
-
-      <details class="mobile-menu">
-        <summary class="mobile-menu__toggle"><span>Menu</span></summary>
-        <nav class="mobile-menu__panel" aria-label="Main">
-          <ul>
-            <li><a href="#practice-areas">Practice areas</a></li>
-            <li><a href="#consultation">First consultation</a></li>
-            <li><a href="#attorneys">Attorneys</a></li>
-            <li><a href="#approach">Our approach</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#insights">Insights</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
-      </details>
     </div>
   </div>
 
@@ -135,7 +134,7 @@
           <h3 class="practice-group__title">Family Law</h3>
           <p class="practice-group__lead">For changes inside a family: ending a marriage, parenting arrangements, support, agreements and adoption.</p>
         </div>
-        <ul class="practice-cards">
+        <ul role="list" class="practice-cards">
           <li class="practice-card">
             <h4>Divorce, contested and uncontested</h4>
             <p>Texas allows a no-fault divorce when a marriage has become "insupportable." Uncontested means both spouses agree on every issue; contested means they don't.</p>
@@ -169,7 +168,7 @@
           <h3 class="practice-group__title">Estate Planning &amp; Probate</h3>
           <p class="practice-group__lead">For planning ahead, and for settling an estate after someone you love has died.</p>
         </div>
-        <ul class="practice-cards">
+        <ul role="list" class="practice-cards">
           <li class="practice-card">
             <h4>Wills, trusts and powers of attorney</h4>
             <p>A statutory durable power of attorney covers financial matters. A medical power of attorney and a directive to physicians cover health-care choices.</p>
@@ -196,7 +195,7 @@
       </div>
 
       <div class="consult__grid">
-        <ol class="steps" aria-label="How a first consultation works">
+        <ol role="list" class="steps" aria-label="How a first consultation works">
           <li class="step">
             <h3 class="step__name">Reach out</h3>
             <p>Call the office or send the form below with a few general details. Please leave out anything confidential for now.</p>
@@ -299,7 +298,7 @@
              width="1200" height="800" loading="lazy"
              alt="One person handing a document across a desk to another">
       </div>
-      <ul class="values">
+      <ul role="list" class="values">
         <li class="value">
           <h3>Calm, clear explanations</h3>
           <p>We explain where things stand and what comes next in plain language, and you receive a written summary of next steps.</p>
@@ -388,7 +387,7 @@
         <h2 id="insights-title" class="ruled">Insights</h2>
         <p class="section-head__intro">Short, plain-language explanations of Texas terms that come up in family and estate matters.</p>
       </div>
-      <ul class="insight-grid">
+      <ul role="list" class="insight-grid">
         <li class="insight">
           <p class="insight__meta"><span class="insight__topic">Family Law</span> <span class="tag">Sample article</span></p>
           <h3>Why Texas says "conservatorship," not "custody"</h3>
@@ -442,7 +441,7 @@
 
         <div class="service-area">
           <h3 class="service-area__title">Serving families across Tarrant and Denton counties</h3>
-          <ul class="service-area__list">
+          <ul role="list" class="service-area__list">
             <li>Southlake</li>
             <li>Grapevine</li>
             <li>Colleyville</li>
@@ -458,7 +457,7 @@
         <p class="form-card__note">Preview form: nothing is sent.</p>
         <p class="form-card__required">All fields are required unless marked optional.</p>
 
-        <form class="consult-form" method="dialog" novalidate aria-labelledby="form-title">
+        <form class="consult-form" method="dialog" aria-labelledby="form-title">
 
           <div class="field">
             <label for="f-name">Full name</label>

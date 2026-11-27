@@ -67,8 +67,8 @@
   }
   @media (min-width: 960px) { html { scroll-padding-top: 8rem; } }
   @media (min-width: 1360px) { html { scroll-padding-top: 6rem; } }
-  @media (min-width: 2400px) { html { font-size: 125%; } :root { --container: 1560px; } }
-  @media (min-width: 3000px) { html { font-size: 137.5%; } :root { --container: 1760px; } }
+  /* Wider containers only: a root font-size bump in a px media query would cancel browser zoom (WCAG 1.4.4). */
+  @media (min-width: 2400px) { :root { --container: 1560px; } }
 
   body {
     font-family: var(--font-text);
@@ -250,12 +250,12 @@
     margin-inline: auto;
     padding: 0.8rem var(--gutter) 0;
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas: "brand cta" "nav nav";
     align-items: center;
     gap: 0.5rem 1rem;
   }
-  .brand { grid-area: brand; white-space: nowrap; text-decoration: none; display: inline-flex; flex-direction: column; line-height: 1; padding-block: 0.2rem; }
+  .brand { grid-area: brand; white-space: normal; text-decoration: none; display: inline-flex; flex-direction: column; line-height: 1; padding-block: 0.2rem; }
   .brand__name {
     font-family: var(--font-display);
     font-size: 1.5rem;
@@ -292,6 +292,9 @@
   @media (max-width: 1359px) {
     /* Inset ring so the scroll container never clips the focus outline. */
     .site-nav a:focus-visible { outline-offset: -4px; }
+    /* Wrap rather than scroll, so no link is ever hidden off-screen (WCAG 1.4.10). */
+    .site-nav { overflow-x: visible; }
+    .site-nav ul { flex-wrap: wrap; white-space: normal; row-gap: 0; }
   }
   /* Small screens: short labels so every link fits, with no fade or clipping. */
   @media (max-width: 599px) {
@@ -433,7 +436,7 @@
   .hero__veil {
     background:
       linear-gradient(90deg, rgba(8, 16, 29, 0.78) 0%, rgba(8, 16, 29, 0.45) 55%, rgba(8, 16, 29, 0.25) 100%),
-      linear-gradient(180deg, rgba(8, 16, 29, 0.55) 0%, rgba(8, 16, 29, 0.2) 35%, rgba(8, 16, 29, 0.55) 62%, rgba(8, 16, 29, 0.94) 100%);
+      linear-gradient(180deg, rgba(8, 16, 29, 0.7) 0%, rgba(8, 16, 29, 0.2) 35%, rgba(8, 16, 29, 0.55) 62%, rgba(8, 16, 29, 0.94) 100%);
   }
   .hero__inner {
     width: 100%;
@@ -832,7 +835,7 @@
     align-items: baseline;
   }
   .field__error::before {
-    content: "!";
+    content: "!"; content: "!" / "";
     flex: none;
     display: inline-grid;
     place-items: center;
@@ -984,3 +987,10 @@ body > div.preview-bar.preview-bar { padding-bottom: 0.5rem; }
 body > header.site-header.site-header { padding-bottom: 0; }
 body > main#main { padding-bottom: 0; }
 body > footer.site-footer.site-footer { padding-bottom: max(env(safe-area-inset-bottom), 7rem); }
+
+@layer components {
+  /* Text-only zoom: keep the hero headline and buttons inside the hero (WCAG 1.4.4). */
+  .hero__title { overflow-wrap: break-word; hyphens: auto; }
+  @media (max-width: 799px) { .hero__title { font-size: min(clamp(2.25rem, 9.6vw, 4rem), 11vw); } }
+  .hero .btn { white-space: normal; text-align: center; max-width: 100%; padding-inline: min(2rem, 8vw); }
+}

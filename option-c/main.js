@@ -31,8 +31,13 @@
           io.unobserve(entry.target);
         }
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
     settles.forEach(function (el) { io.observe(el); });
+    // A focused control inside a card that hasn't settled yet makes the card visible at once.
+    document.addEventListener('focusin', function (e) {
+      var s = e.target.closest && e.target.closest('.settle');
+      if (s) s.classList.add('is-in');
+    });
   }
 
   /* ---------- Preview form ---------- */
@@ -70,6 +75,14 @@
   }
 
   function setError(field, message) {
+    // For the radio group, describe each radio too: screen readers don't reliably read a fieldset's description.
+    if (field.matches('fieldset')) {
+      field.querySelectorAll('input[type="radio"]').forEach(function (r) {
+        var ids = (r.getAttribute('aria-describedby') || '').split(/\s+/).filter(function (x) { return x && x !== (field.querySelector('.field__error') || {}).id; });
+        if (message) { ids.push(field.querySelector('.field__error').id); r.setAttribute('aria-invalid', 'true'); } else { r.removeAttribute('aria-invalid'); }
+        if (ids.length) r.setAttribute('aria-describedby', ids.join(' ')); else r.removeAttribute('aria-describedby');
+      });
+    }
     var target = targetOf(field);
     var error = field.querySelector('.field__error');
     if (!target || !error) return;

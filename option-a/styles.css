@@ -230,7 +230,7 @@
   .header-phone a:hover { text-decoration: underline; }
   .header-phone .tag { font-size: 0.625rem; }
 
-  /* Quick exit: first in tab order. On small screens it sits in the utility strip. */
+  /* Quick exit: sits in the pinned header row on desktop and in the utility strip on small screens. */
   .quick-exit {
     grid-area: exit;
     position: absolute;
@@ -275,7 +275,10 @@
   .header-cta { grid-area: cta; min-width: max-content; }
   .btn.header-cta { gap: 0; }
   @media (max-width: 479px) {
-    .utility__inner { padding-inline: 1rem; font-size: 0.75rem; }
+    .utility { height: auto; min-height: var(--utility-h); }
+    /* Reserve room for the absolutely placed quick-exit link so it never overlaps the phone at 320px. */
+    .utility__inner { padding-inline: 1rem calc(1rem + 8rem); padding-block: 0.25rem; font-size: 0.75rem; }
+    .header-phone { flex-wrap: wrap; row-gap: 0; }
     .quick-exit { right: 1rem; font-size: 0.75rem; }
     .header-phone { gap: 0.35rem; }
     .header-phone .tag { padding-inline: 0.3rem; letter-spacing: 0.05em; }
@@ -290,7 +293,10 @@
   .site-nav { grid-area: nav; margin-inline: calc(var(--gutter) * -1); overflow-x: auto; scrollbar-width: none; border-top: 1px solid rgba(255, 255, 255, 0.07); }
   .site-nav::-webkit-scrollbar { display: none; }
   @media (max-width: 1359px) {
-    .site-nav { -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); }
+    .site-nav { -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); scroll-padding-inline-end: 15%; }
+    /* A spacer lets the last link scroll fully clear of the fade; the inset ring isn't clipped by the scroller. */
+    .site-nav ul::after { content: ""; flex: 0 0 calc(15vw - 0.65rem); }
+    .site-nav a:focus-visible { outline-offset: -4px; }
   }
   .site-nav ul { list-style: none; margin: 0; display: flex; gap: 0.25rem; padding-inline: calc(var(--gutter) - 0.65rem); white-space: nowrap; }
   .site-nav a {
@@ -417,7 +423,6 @@
     display: grid;
     align-items: end;
     min-height: min(84svh, 900px);
-    max-height: 1000px;
     overflow: hidden;
     color: var(--on-navy);
     background: var(--navy-900);
@@ -860,6 +865,8 @@
   .choice__opt input:focus-visible, .check input:focus-visible { outline: 2px solid var(--navy-900); outline-offset: 3px; }
   .check:has([aria-invalid="true"]) { color: var(--error); }
   .check input[aria-invalid="true"] { outline: 2px solid var(--error); outline-offset: 2px; }
+  .check input[aria-invalid="true"]:focus-visible { outline: 2px solid var(--navy-900); outline-offset: 3px; box-shadow: 0 0 0 2px var(--error); }
+  .field__opt { font-weight: 400; font-style: italic; color: var(--ink-quiet); }
 
   .form__notice {
     margin-top: 2rem;
@@ -912,7 +919,8 @@
     .hero__title { animation: settle 1.8s var(--ease-calm) 0.4s both; }
     .hero__horizon { animation: draw 2.4s var(--ease-draw) 1s both; }
     .hero__place { animation: fade 1.6s var(--ease-calm) 0.2s both; }
-    .hero__foot { animation: settle 1.6s var(--ease-calm) 2s both; }
+    .hero__foot { animation: settle 1.6s var(--ease-calm) 0.6s both; }
+    .hero__foot:focus-within { animation: none; }
 
     .js .reveal {
       opacity: 0;
@@ -920,6 +928,7 @@
       transition: opacity 1.3s var(--ease-calm), transform 1.3s var(--ease-calm);
     }
     .js .reveal.is-in { opacity: 1; transform: none; }
+    .js .reveal:focus-within { opacity: 1; transform: none; transition: none; }
     .js .rule { transform: scaleX(0); transition: transform 1.6s var(--ease-draw) 0.3s; }
     .js .rule.is-in { transform: scaleX(1); }
 

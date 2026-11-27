@@ -386,7 +386,7 @@
               <h3 class="insight__title">Why Texas says &ldquo;conservatorship,&rdquo; not &ldquo;custody&rdquo;</h3>
               <p>Texas law uses &ldquo;conservatorship&rdquo; for a parent&rsquo;s rights and duties and &ldquo;possession and access&rdquo; for parenting time, and knowing the terms makes court papers easier to read.</p>
             </div>
-            <a class="insight__link" href="#" aria-disabled="true">Coming soon <span class="visually-hidden">: sample article, not yet available</span></a>
+            <span class="insight__link">Coming soon<span class="visually-hidden">: sample article, not yet available</span></span>
           </li>
           <li class="insight">
             <p class="insight__meta"><span class="insight__topic">Probate</span> <span class="tag">Sample article</span></p>
@@ -394,7 +394,7 @@
               <h3 class="insight__title">Muniment of title: a simpler probate path some Texas families can use</h3>
               <p>When an estate has no unpaid debts other than those secured by real estate, a Texas court may admit a will as a muniment of title, which transfers property without appointing an executor.</p>
             </div>
-            <a class="insight__link" href="#" aria-disabled="true">Coming soon <span class="visually-hidden">: sample article, not yet available</span></a>
+            <span class="insight__link">Coming soon<span class="visually-hidden">: sample article, not yet available</span></span>
           </li>
           <li class="insight">
             <p class="insight__meta"><span class="insight__topic">Estate planning</span> <span class="tag">Sample article</span></p>
@@ -402,7 +402,7 @@
               <h3 class="insight__title">Medical power of attorney vs. directive to physicians</h3>
               <p>A medical power of attorney names someone to make health-care decisions if a doctor certifies you can&rsquo;t, while a directive to physicians records your own wishes about life-sustaining treatment.</p>
             </div>
-            <a class="insight__link" href="#" aria-disabled="true">Coming soon <span class="visually-hidden">: sample article, not yet available</span></a>
+            <span class="insight__link">Coming soon<span class="visually-hidden">: sample article, not yet available</span></span>
           </li>
         </ul>
       </div>
@@ -457,19 +457,19 @@
 
             <div class="field">
               <label for="f-name">Name</label>
-              <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err">
+              <input id="f-name" name="name" type="text" autocomplete="name" required>
               <p class="field__error" id="f-name-err" hidden>Please enter your name.</p>
             </div>
 
             <div class="field-row">
               <div class="field">
                 <label for="f-phone">Phone</label>
-                <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required pattern="[0-9()+\-.\s]{7,}" aria-describedby="f-phone-err">
-                <p class="field__error" id="f-phone-err" hidden>Please enter a phone number we can reach you at.</p>
+                <input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required pattern="[0-9\(\)+.\s\-]{7,}">
+                <p class="field__error" id="f-phone-err" hidden>Please enter a phone number using digits, spaces, ( ) + - or ., at least 7 characters.</p>
               </div>
               <div class="field">
                 <label for="f-email">Email</label>
-                <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-err">
+                <input id="f-email" name="email" type="email" autocomplete="email" required>
                 <p class="field__error" id="f-email-err" hidden>Please enter an email address, like name@example.com.</p>
               </div>
             </div>
@@ -477,7 +477,7 @@
             <div class="field-row">
               <div class="field">
                 <label for="f-area">Practice area</label>
-                <select id="f-area" name="practice_area" required aria-describedby="f-area-err">
+                <select id="f-area" name="practice_area" required>
                   <option value="">Choose one</option>
                   <optgroup label="Family Law">
                     <option>Divorce, contested and uncontested</option>
@@ -497,7 +497,7 @@
               </div>
               <div class="field">
                 <label for="f-time">Best time to call</label>
-                <select id="f-time" name="best_time" required aria-describedby="f-time-err">
+                <select id="f-time" name="best_time" required>
                   <option value="">Choose one</option>
                   <option>Morning (8:30 a.m. to noon)</option>
                   <option>Afternoon (noon to 5:30 p.m.)</option>
@@ -508,7 +508,7 @@
               </div>
             </div>
 
-            <fieldset class="field field--radios" aria-describedby="f-method-err">
+            <fieldset class="field field--radios">
               <legend>Preferred contact method</legend>
               <div class="radio-row">
                 <label class="choice"><input type="radio" name="contact_method" value="phone" required> <span>Phone</span></label>
@@ -520,7 +520,7 @@
 
             <div class="field">
               <label for="f-msg">Briefly, what can we help with? General details only</label>
-              <textarea id="f-msg" name="message" rows="4" maxlength="300" required aria-describedby="f-msg-hint f-msg-err"></textarea>
+              <textarea id="f-msg" name="message" rows="4" maxlength="300" required aria-describedby="f-msg-hint"></textarea>
               <p class="field__hint" id="f-msg-hint">Up to 300 characters. Please leave out names, account numbers and other private details. <span class="field__count" data-count aria-hidden="true"></span></p>
               <p class="field__error" id="f-msg-err" hidden>Please add a sentence or two about what you need.</p>
             </div>
@@ -538,7 +538,7 @@
 
             <div class="field field--check">
               <label class="choice choice--check">
-                <input id="f-ack" name="acknowledge" type="checkbox" required aria-describedby="f-ack-err">
+                <input id="f-ack" name="acknowledge" type="checkbox" required>
                 <span>I understand.</span>
               </label>
               <p class="field__error" id="f-ack-err" hidden>Please confirm you&rsquo;ve read the note above.</p>

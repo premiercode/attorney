@@ -81,13 +81,23 @@
     return check.el.checkValidity();
   }
 
+  // Point aria-describedby at an error only while it is showing, so it isn't read on first visit.
+  function describe(el, id, on) {
+    if (!el || !id) { return; }
+    var ids = (el.getAttribute('aria-describedby') || '').split(/\s+/).filter(function (x) { return x && x !== id; });
+    if (on) { ids.push(id); }
+    if (ids.length) { el.setAttribute('aria-describedby', ids.join(' ')); } else { el.removeAttribute('aria-describedby'); }
+  }
+
   function setState(check, ok) {
     var msg = document.getElementById(check.err);
     if (msg) { msg.hidden = ok; }
+    describe(check.group ? check.wrap : check.el, check.err, !ok);
     if (check.group) {
       check.wrap.classList.toggle('is-invalid', !ok);
       form.querySelectorAll('input[name="' + check.group + '"]').forEach(function (r) {
         if (ok) { r.removeAttribute('aria-invalid'); } else { r.setAttribute('aria-invalid', 'true'); }
+        describe(r, check.err, !ok);
       });
       return;
     }
@@ -113,8 +123,10 @@
     });
   });
 
+  var statusTimer;
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    clearTimeout(statusTimer);
     status.textContent = '';
 
     var firstBad = null;
@@ -130,6 +142,7 @@
       return;
     }
 
-    status.textContent = 'Preview only. Nothing was sent.';
+    // Set a tick after clearing so a repeat submit is announced again.
+    statusTimer = setTimeout(function () { status.textContent = 'Preview only. Nothing was sent.'; }, 100);
   });
 })();

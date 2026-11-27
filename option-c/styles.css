@@ -289,7 +289,7 @@ a:hover { text-decoration-color: var(--accent); }
 }
 .memo dt::after { content: ":"; }
 .memo dd { font-weight: 500; }
-.memo-link { color: inherit; font-weight: 650; }
+.memo-link { color: inherit; font-weight: 650; text-decoration: underline solid var(--accent); text-decoration-thickness: 2px; text-underline-offset: 0.2em; }
 .memo-link:hover { background: var(--accent-tint); }
 .memo-aside {
   display: block;
@@ -427,8 +427,9 @@ a:hover { text-decoration-color: var(--accent); }
 .entries-lg p { font-size: 1.125rem; padding: 1.1rem 0; }
 
 /* ---------- Glossed terms and margin notes ---------- */
+/* Annotated terms get a dotted red underline; real links get a solid one. */
 .gloss {
-  text-decoration: underline;
+  text-decoration: underline dotted;
   text-decoration-color: var(--accent);
   text-decoration-thickness: 2px;
   text-underline-offset: 0.2em;
@@ -628,14 +629,14 @@ a:hover { text-decoration-color: var(--accent); }
 }
 .faq summary::-webkit-details-marker { display: none; }
 .faq summary::after {
-  content: "+";
+  content: "+"; content: "+" / "";
   flex: none;
   font-weight: 400;
   font-size: 1.5rem;
   line-height: 1;
   color: var(--accent);
 }
-.faq[open] summary::after { content: "−"; }
+.faq[open] summary::after { content: "−"; content: "−" / ""; }
 .faq summary:hover { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 0.2em; }
 .answer { padding: 0 0 1.4rem; }
 
@@ -751,7 +752,8 @@ input:focus-visible, select:focus-visible, textarea:focus-visible { outline-offs
 }
 .err::before { content: "Error: "; }
 
-.form-status:empty { display: none; }
+.form-status:empty { padding: 0; border: 0; }
+.opt { font-weight: 400; font-style: italic; color: var(--ink-2); }
 .form-status {
   margin: 0;
   font-family: var(--f-display);

@@ -181,7 +181,7 @@
           <p class="section-lede">Here is the whole process, from the first call to a written plan, so you know what each step involves before you pick up the phone.</p>
         </header>
 
-        <ul class="steps" aria-label="Sample consultation steps">
+        <ul class="steps" role="list" aria-label="Sample consultation steps">
           <li class="step">
             <span class="step__node" aria-hidden="true"></span>
             <h3 class="step__title">Reach out</h3>
@@ -207,7 +207,7 @@
 
         <div class="expect">
           <!-- PLACEHOLDER: consultation fee and format -->
-          <aside class="fee reveal" aria-labelledby="fee-title">
+          <section class="fee reveal" aria-labelledby="fee-title">
             <p class="tag fee__tag">Sample fee and format</p>
             <h3 class="fee__title" id="fee-title">The consultation</h3>
             <span class="rule rule--center" aria-hidden="true"></span>
@@ -218,7 +218,7 @@
             </dl>
             <p class="fee__note">Companions usually wait outside, to protect confidentiality.</p>
             <a class="btn btn--navy btn--block" href="#contact">Schedule a consultation</a>
-          </aside>
+          </section>
 
           <div class="bring">
             <figure class="bring__media reveal">
@@ -386,20 +386,20 @@
           <p class="section-lede">Short, plain-language reading on Texas terms that tend to confuse people.</p>
         </header>
 
-        <ul class="insights">
+        <ul class="insights" role="list">
           <li class="insight">
             <p class="tag">Sample article</p>
-            <h3 class="insight__title"><a href="#" aria-disabled="true"><span class="kw">W</span>hy Texas says &ldquo;conservatorship,&rdquo; not &ldquo;custody&rdquo;</a></h3>
+            <h3 class="insight__title"><span class="kw">W</span>hy Texas says &ldquo;conservatorship,&rdquo; not &ldquo;custody&rdquo;</h3>
             <p class="insight__teaser">Texas law uses &ldquo;conservatorship&rdquo; for a parent&rsquo;s rights and duties and &ldquo;possession and access&rdquo; for parenting time, and knowing the terms makes court papers easier to read.</p>
           </li>
           <li class="insight">
             <p class="tag">Sample article</p>
-            <h3 class="insight__title"><a href="#" aria-disabled="true">Muniment of title: a simpler probate path some Texas families can use</a></h3>
+            <h3 class="insight__title">Muniment of title: a simpler probate path some Texas families can use</h3>
             <p class="insight__teaser">When an estate has no unpaid debts other than those secured by real estate, a Texas court may admit a will as a muniment of title, which transfers property without appointing an executor.</p>
           </li>
           <li class="insight">
             <p class="tag">Sample article</p>
-            <h3 class="insight__title"><a href="#" aria-disabled="true">Medical power of attorney vs. directive to physicians</a></h3>
+            <h3 class="insight__title">Medical power of attorney vs. directive to physicians</h3>
             <p class="insight__teaser">A medical power of attorney names someone to make health-care decisions if a doctor certifies you can&rsquo;t, while a directive to physicians records your own wishes about life-sustaining treatment.</p>
           </li>
         </ul>
@@ -434,7 +434,7 @@
             <div class="area">
               <span class="rule" aria-hidden="true"></span>
               <p class="area__line">Serving families across Tarrant and Denton counties</p>
-              <ul class="area__cities" aria-label="Service area">
+              <ul class="area__cities" role="list" aria-label="Service area">
                 <li>Southlake</li><li>Grapevine</li><li>Colleyville</li><li>Keller</li><li>Trophy Club</li><li>Roanoke</li>
               </ul>
             </div>
@@ -444,6 +444,7 @@
             <form class="form" id="consult-form" method="dialog" aria-labelledby="form-title" aria-describedby="form-static-note">
               <h3 class="form__title" id="form-title">Request a consultation</h3>
               <p class="form__static" id="form-static-note">Preview form: nothing is sent.</p>
+              <p class="form__static">All fields are required unless marked optional.</p>
 
               <!-- PLACEHOLDER: reCAPTCHA v3 script and token field go here at launch -->
               <input type="hidden" name="g-recaptcha-response" value="">
@@ -491,7 +492,7 @@
                   <p class="field__error" id="f-area-err" hidden></p>
                 </div>
                 <div class="field">
-                  <label for="f-time">Best time to call</label>
+                  <label for="f-time">Best time to call <span class="field__opt">(optional)</span></label>
                   <select id="f-time" name="best_time">
                     <option>Any time during office hours</option>
                     <option>Morning</option>
@@ -501,7 +502,7 @@
                   </select>
                 </div>
                 <fieldset class="field field--full choice">
-                  <legend>Preferred contact method</legend>
+                  <legend>Preferred contact method <span class="field__opt">(optional)</span></legend>
                   <div class="choice__row">
                     <label class="choice__opt"><input type="radio" name="contact_method" value="phone" checked> Phone</label>
                     <label class="choice__opt"><input type="radio" name="contact_method" value="email"> Email</label>
@@ -509,7 +510,7 @@
                   </div>
                 </fieldset>
                 <div class="field field--full">
-                  <label for="f-desc">Briefly, what can we help with? General details only</label>
+                  <label for="f-desc">Briefly, what can we help with? General details only <span class="field__opt">(optional)</span></label>
                   <textarea id="f-desc" name="description" rows="4" maxlength="300" aria-describedby="f-desc-hint"></textarea>
                   <p class="field__hint" id="f-desc-hint">Up to 300 characters. <span data-count aria-hidden="true"></span></p>
                 </div>

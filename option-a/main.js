@@ -110,8 +110,10 @@
     f.addEventListener('input', function () { if (f.hasAttribute('aria-invalid')) showError(f); });
   });
 
+  var statusTimer;
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    clearTimeout(statusTimer);
     status.textContent = '';
     var firstInvalid = null;
     fields.forEach(function (f) {
@@ -125,6 +127,7 @@
     var hp = form.querySelector('[name="company_website"]');
     if (hp && hp.value) return;
 
-    status.textContent = 'Preview only. Nothing was sent.';
+    // Set a tick after clearing so a repeat submit is announced again.
+    statusTimer = setTimeout(function () { status.textContent = 'Preview only. Nothing was sent.'; }, 100);
   });
 })();

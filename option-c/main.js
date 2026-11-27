@@ -39,9 +39,18 @@
     rh.hidden = false;
     var setShown = function (shown) {
       rh.classList.toggle('is-shown', shown);
-      // Keep links out of the tab order while the bar is off screen.
-      rh.querySelectorAll('a').forEach(function (a) { a.tabIndex = shown ? 0 : -1; });
-      rh.setAttribute('aria-hidden', shown ? 'false' : 'true');
+      // If focus is inside the bar as it hides, hand it to the hero heading first.
+      if (!shown && rh.contains(document.activeElement)) {
+        var h = document.getElementById('hero-h');
+        h.setAttribute('tabindex', '-1');
+        h.focus({ preventScroll: true });
+      }
+      // inert keeps the hidden bar out of the tab order and the accessibility tree.
+      rh.inert = !shown;
+      // Browsers without inert: at least keep the hidden bar's links out of the tab order.
+      if (!('inert' in HTMLElement.prototype)) {
+        rh.querySelectorAll('a').forEach(function (a) { a.tabIndex = shown ? 0 : -1; });
+      }
     };
     setShown(false);
     new IntersectionObserver(function (entries) {
@@ -135,6 +144,9 @@
     updateCount();
   }
 
+  // Set the message a tick after clearing it so a repeat submit is announced again.
+  var announce = function (msg) { setTimeout(function () { status.textContent = msg; }, 50); };
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     status.textContent = '';
@@ -144,9 +156,9 @@
     });
     if (firstBad) {
       firstBad.focus();
-      status.textContent = 'Please fix the marked fields above.';
+      announce('Please fix the marked fields above.');
       return;
     }
-    status.textContent = 'Preview only. Nothing was sent.';
+    announce('Preview only. Nothing was sent.');
   });
 })();

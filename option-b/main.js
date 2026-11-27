@@ -4,26 +4,21 @@
 
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Soft staggered reveals ---------- */
-  var revealEls = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
-  function showAll() { revealEls.forEach(function (el) { el.classList.add('is-in'); }); }
-
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    showAll();
-  } else {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-in');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    revealEls.forEach(function (el) { io.observe(el); });
-    /* Safety net: never leave content hidden (e.g. when printing or jumping to an anchor). */
-    window.addEventListener('beforeprint', showAll);
-    if (location.hash) { setTimeout(showAll, 50); }
-    window.addEventListener('hashchange', showAll);
+  /* ---------- The consultation path draws itself in once, when it is seen ---------- */
+  var path = document.querySelector('[data-path]');
+  if (path) {
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      path.classList.add('is-drawn');
+    } else {
+      var pathIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { path.classList.add('is-drawn'); pathIo.disconnect(); }
+        });
+      }, { threshold: 0.35 });
+      pathIo.observe(path);
+      /* Never leave it half drawn when printing. */
+      window.addEventListener('beforeprint', function () { path.classList.add('is-drawn'); });
+    }
   }
 
   /* ---------- Current-section highlight in the nav ---------- */
@@ -61,7 +56,7 @@
   var counter = form.querySelector('[data-count]');
 
   if (textarea && counter) {
-    var updateCount = function () { counter.textContent = String(textarea.value.length); };
+    var updateCount = function () { counter.textContent = textarea.value.length + ' of 300 used'; };
     textarea.addEventListener('input', updateCount);
     updateCount();
   }

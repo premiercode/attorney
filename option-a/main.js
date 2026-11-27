@@ -6,7 +6,7 @@
   root.classList.add('js');
 
   /* ---- Slow reveals and drawn gold rules ---- */
-  var targets = document.querySelectorAll('.reveal, .rule, .practice__divider, .steps, .interlude');
+  var targets = document.querySelectorAll('.reveal, .rule, .steps, .interlude');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (reduce || !('IntersectionObserver' in window)) {
@@ -20,7 +20,24 @@
         }
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    targets.forEach(function (el) { io.observe(el); });
+    /* Anything already on screen at start-up is shown at once, without a late fade. */
+    var instant = [];
+    targets.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.92 && r.bottom > 0) {
+        el.classList.add('is-instant', 'is-in');
+        instant.push(el);
+      } else {
+        io.observe(el);
+      }
+    });
+    if (instant.length) {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          instant.forEach(function (el) { el.classList.remove('is-instant'); });
+        });
+      });
+    }
 
     /* Safety net: never leave content hidden if an observer callback is missed. */
     window.addEventListener('load', function () {

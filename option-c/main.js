@@ -2,38 +2,72 @@
 (function () {
   'use strict';
 
-  /* 1. Footnotes: hovering or focusing a marker lights its margin note, and vice versa. */
-  function pair(ref) {
-    var id = (ref.getAttribute('href') || '').slice(1);
-    var note = id ? document.getElementById(id) : null;
-    return note;
-  }
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasIO = 'IntersectionObserver' in window;
 
-  document.querySelectorAll('a.fn').forEach(function (ref) {
-    var note = pair(ref);
+  /* 1. Glossed terms: hovering a red-underlined term lights its margin note, and the reverse. */
+  document.querySelectorAll('.gloss[data-gloss]').forEach(function (term) {
+    var note = document.querySelector('.note[data-note="' + term.getAttribute('data-gloss') + '"]');
     if (!note) return;
-    var on = function () { ref.classList.add('is-lit'); note.classList.add('is-lit'); };
-    var off = function () { ref.classList.remove('is-lit'); note.classList.remove('is-lit'); };
-    ref.addEventListener('mouseenter', on);
-    ref.addEventListener('mouseleave', off);
-    ref.addEventListener('focus', on);
-    ref.addEventListener('blur', off);
-    note.addEventListener('mouseenter', on);
-    note.addEventListener('mouseleave', off);
-
-    // On wide screens the note is already beside the text, so don't jump; just light it.
-    ref.addEventListener('click', function (e) {
-      if (window.matchMedia('(min-width: 1100px)').matches) {
-        var r = note.getBoundingClientRect();
-        if (r.top >= 0 && r.bottom <= window.innerHeight) {
-          e.preventDefault();
-          on();
-        }
-      }
+    var on = function () { term.classList.add('is-lit'); note.classList.add('is-lit'); };
+    var off = function () { term.classList.remove('is-lit'); note.classList.remove('is-lit'); };
+    [term, note].forEach(function (el) {
+      el.addEventListener('mouseenter', on);
+      el.addEventListener('mouseleave', off);
     });
   });
 
-  /* 2. Quick exit: replace history so Back doesn't return here. */
+  /* 2. Side-head rules: the double rule over each heading draws in once, as the section arrives. */
+  var heads = Array.prototype.slice.call(document.querySelectorAll('.side-head'));
+  if (reduce || !hasIO) {
+    heads.forEach(function (h) { h.classList.add('is-in'); });
+  } else {
+    var ruleIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('is-in'); ruleIO.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -10% 0px' });
+    heads.forEach(function (h) { ruleIO.observe(h); });
+  }
+
+  /* 3. Running head: once the cover is out of view, a slim line names the part being read. */
+  var rh = document.querySelector('[data-running-head]');
+  var rhName = rh && rh.querySelector('[data-rh-section]');
+  var cover = document.querySelector('.cover');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main [data-section]'));
+  if (rh && rhName && cover && hasIO) {
+    rh.hidden = false;
+    var setShown = function (shown) {
+      rh.classList.toggle('is-shown', shown);
+      // Keep links out of the tab order while the bar is off screen.
+      rh.querySelectorAll('a').forEach(function (a) { a.tabIndex = shown ? 0 : -1; });
+      rh.setAttribute('aria-hidden', shown ? 'false' : 'true');
+    };
+    setShown(false);
+    new IntersectionObserver(function (entries) {
+      setShown(!entries[0].isIntersecting);
+    }, { rootMargin: '-60px 0px 0px 0px' }).observe(cover);
+
+    // The current section is the last one whose top has passed the upper third of the screen.
+    var update = function () {
+      var line = window.innerHeight * 0.33;
+      var current = sections[0];
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].getBoundingClientRect().top <= line) current = sections[i];
+      }
+      var name = current ? current.getAttribute('data-section') : '';
+      if (rhName.textContent !== name) rhName.textContent = name;
+    };
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function () { update(); ticking = false; });
+    }, { passive: true });
+    update();
+  }
+
+  /* 4. Quick exit: replace history so Back doesn't return here. */
   var exit = document.querySelector('[data-quick-exit]');
   if (exit) {
     exit.addEventListener('click', function (e) {
@@ -42,7 +76,7 @@
     });
   }
 
-  /* 3. Preview form: validate, show inline errors, never send. */
+  /* 5. Preview form: validate, show inline errors, never send. */
   var form = document.getElementById('consult-form');
   if (!form) return;
   form.setAttribute('novalidate', '');
@@ -96,9 +130,9 @@
   });
 
   if (desc && count) {
-    var update = function () { count.textContent = desc.value.length + ' of 300 used.'; };
-    desc.addEventListener('input', update);
-    update();
+    var updateCount = function () { count.textContent = desc.value.length + ' of 300 used.'; };
+    desc.addEventListener('input', updateCount);
+    updateCount();
   }
 
   form.addEventListener('submit', function (e) {

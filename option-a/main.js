@@ -50,6 +50,15 @@
     });
   }
 
+  /* ---- Quick exit: replace this page in history so Back doesn't return here ---- */
+  var exit = document.querySelector('.quick-exit');
+  if (exit) {
+    exit.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.location.replace(exit.href);
+    });
+  }
+
   /* ---- Sample article links are disabled in the preview ---- */
   document.querySelectorAll('a[aria-disabled="true"]').forEach(function (a) {
     a.addEventListener('click', function (e) { e.preventDefault(); });

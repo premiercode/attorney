@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /* ==========================================================================
    Option A: Quiet authority
-   Deep navy, ivory paper, Libre Caslon Text + Jost, thin gold rules.
+   Deep navy, ivory paper, Libre Caslon Text + Source Sans 3, thin gold rules.
    Motion idea: the hero "lights up" at dusk while a gold horizon rule draws
    across the water; later rules draw in as sections arrive, and the
    consultation path fills its nodes in order. Mobile-first.
@@ -40,7 +40,7 @@
     --error: #9b2c1f;
 
     --font-display: "Libre Caslon Text", Georgia, "Times New Roman", serif;
-    --font-text: "Jost", "Futura", "Century Gothic", system-ui, sans-serif;
+    --font-text: "Source Sans 3", "Source Sans Pro", "Segoe UI", system-ui, sans-serif;
 
     /* Type scale, augmented fourth (1.414) */
     --step-1: 1.414rem;
@@ -72,8 +72,8 @@
 
   body {
     font-family: var(--font-text);
-    font-size: 1.0625rem;
-    line-height: 1.7;
+    font-size: 1.125rem;
+    line-height: 1.65;
     color: var(--ink);
     background: var(--ivory);
     -webkit-font-smoothing: antialiased;
@@ -111,7 +111,7 @@
     padding: 0.75rem 1.25rem;
     background: var(--gold);
     color: var(--navy-900);
-    font-weight: 500;
+    font-weight: 600;
     text-decoration: none;
   }
   .skip-link:focus { top: 1rem; }
@@ -176,8 +176,8 @@
   .tag {
     display: inline-block;
     font-family: var(--font-text);
-    font-size: 0.6875rem;
-    font-weight: 500;
+    font-size: 0.75rem;
+    font-weight: 600;
     font-style: normal;
     line-height: 1.4;
     letter-spacing: 0.1em;
@@ -225,7 +225,7 @@
     min-height: 32px;
   }
   .header-phone a:hover { text-decoration: underline; }
-  .header-phone .tag { font-size: 0.625rem; }
+  .header-phone .tag { font-size: 0.75rem; }
 
   /* Quick exit: sits in the pinned header row on desktop and in the utility strip on small screens. */
   .quick-exit {
@@ -290,10 +290,14 @@
   .site-nav { grid-area: nav; margin-inline: calc(var(--gutter) * -1); overflow-x: auto; scrollbar-width: none; border-top: 1px solid rgba(255, 255, 255, 0.07); }
   .site-nav::-webkit-scrollbar { display: none; }
   @media (max-width: 1359px) {
-    .site-nav { -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); scroll-padding-inline-end: 15%; }
-    /* A spacer lets the last link scroll fully clear of the fade; the inset ring isn't clipped by the scroller. */
-    .site-nav ul::after { content: ""; flex: 0 0 calc(15vw - 0.65rem); }
+    /* Inset ring so the scroll container never clips the focus outline. */
     .site-nav a:focus-visible { outline-offset: -4px; }
+  }
+  /* Small screens: short labels so every link fits, with no fade or clipping. */
+  @media (max-width: 599px) {
+    .nav-full, .nav-wide { display: none; }
+    .site-nav a { padding-inline: 0.55rem; }
+    .site-nav ul { padding-inline: calc(var(--gutter) - 0.55rem); gap: 0.1rem; }
   }
   .site-nav ul { list-style: none; margin: 0; display: flex; gap: 0.25rem; padding-inline: calc(var(--gutter) - 0.65rem); white-space: nowrap; }
   .site-nav a {
@@ -341,7 +345,7 @@
     border-radius: 1px;
     font-family: var(--font-text);
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.02em;
     text-decoration: none;
     white-space: nowrap;
@@ -419,7 +423,7 @@
     isolation: isolate;
     display: grid;
     align-items: end;
-    min-height: min(84svh, 900px);
+    min-height: min(74svh, 780px);
     overflow: hidden;
     color: var(--on-navy);
     background: var(--navy-900);
@@ -438,8 +442,8 @@
     padding: clamp(2.5rem, 6vh, 5rem) var(--gutter) clamp(4.5rem, 8vh, 6rem);
   }
   .hero__title {
-    max-width: 16ch;
-    font-size: clamp(2.75rem, min(6.6vw, 9.4svh, 112px), 7.5rem);
+    max-width: 24ch;
+    font-size: clamp(2.5rem, min(5vw, 8.5svh), 5.25rem);
     font-weight: 400;
     line-height: 1.06;
     letter-spacing: -0.005em;
@@ -448,7 +452,7 @@
   /* The hero is capped at 1000px, so very wide screens run the headline on two lines instead of four. */
   @media (min-width: 2400px) { .hero__title { max-width: none; } }
   @media (max-width: 799px) { .hero__title { max-width: none; font-size: clamp(2.25rem, 9.6vw, 4rem); } }
-  .hero__title em { display: block; margin-top: 0.12em; font-weight: 400; color: var(--gold); }
+  .hero__title em { display: block; margin-top: 0.08em; font-style: normal; font-weight: 400; color: var(--gold); }
   .hero__horizon {
     display: block;
     height: 1px;
@@ -458,10 +462,11 @@
   }
   .hero__place {
     margin-bottom: clamp(1.25rem, 3vh, 2rem);
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: clamp(1.0625rem, 1.3vw, 1.3rem);
-    color: var(--on-navy-muted);
+    font-family: var(--font-text);
+    font-weight: 600;
+    font-size: 1.125rem;
+    letter-spacing: 0.01em;
+    color: var(--gold);
   }
   .hero__foot { display: flex; flex-direction: column; padding-top: 1.5rem; }
   .hero__lede { max-width: 36rem; font-size: clamp(1.0625rem, 1.3vw, 1.2rem); color: #e4e6eb; line-height: 1.65; }
@@ -478,7 +483,8 @@
   .hero__more:hover { color: var(--gold); }
   /* Mobile: the consultation button comes straight after the horizon rule, clear of the switcher. */
   @media (max-width: 799px) {
-    .hero__inner { padding-bottom: 3.5rem; }
+    .hero { min-height: auto; align-items: start; }
+    .hero__inner { padding-top: 2.5rem; padding-bottom: 3.5rem; }
     .hero__actions { order: -1; margin: 0 0 1.25rem; }
   }
   /* Wider: lede on the left, actions answering it on the right, both under the horizon. */
@@ -499,7 +505,7 @@
     outline-offset: 10px;
     background: var(--navy-900);
   }
-  .practice__band img { width: 100%; height: 100%; object-fit: cover; object-position: 42% 60%; filter: saturate(0.8); }
+  .practice__band img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; filter: saturate(0.55) brightness(0.9) sepia(0.1); }
   .practice__band::after {
     content: "";
     position: absolute;
@@ -515,14 +521,13 @@
   .matter__list { margin-top: 2rem; border-top: 1px solid var(--hairline); }
   .matter__list > div { padding-block: 1.4rem; border-bottom: 1px solid var(--hairline); }
   .matter__list dt { font-size: 1.375rem; line-height: 1.25; }
-  .matter__list dd { margin: 0.5rem 0 0; color: var(--ink-muted); font-size: 1rem; max-width: 36rem; }
+  .matter__list dd { margin: 0.5rem 0 0; color: var(--ink-muted); font-size: 1.0625rem; max-width: 36rem; }
   .matter__more {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
     margin-top: 2rem;
     font-family: var(--font-display);
-    font-style: italic;
     font-size: 1.25rem;
     color: var(--ink);
     text-decoration: underline;
@@ -542,7 +547,7 @@
      and fades to navy into the quote panel. */
   .interlude { position: relative; background: var(--navy-900); }
   .interlude__media { position: relative; height: clamp(300px, 42vw, 620px); overflow: hidden; }
-  .interlude__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; filter: saturate(0.45) brightness(0.82) sepia(0.12); }
+  .interlude__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; filter: saturate(0.7) brightness(0.8); }
   .interlude__media::after {
     content: "";
     position: absolute;
@@ -562,7 +567,6 @@
   .interlude__panel .rule { margin: 0 0 1.5rem; width: 3.5rem; }
   .interlude__quote {
     font-family: var(--font-display);
-    font-style: italic;
     font-size: clamp(1.6rem, 3.2vw, 2.6rem);
     line-height: 1.22;
   }
@@ -582,7 +586,7 @@
     transition: background-color 0.6s var(--ease-calm);
   }
   .step__title { font-size: 1.6rem; }
-  .step p { margin-top: 0.6rem; color: var(--on-navy-muted); font-size: 1rem; }
+  .step p { margin-top: 0.6rem; color: var(--on-navy-muted); font-size: 1.0625rem; }
   .steps::before {
     content: "";
     position: absolute;
@@ -623,13 +627,13 @@
   .fee::after { inset: 14px; opacity: 0.45; }
   .fee > * { position: relative; z-index: 1; }
   .fee__tag { margin-bottom: 1.5rem; }
-  .fee__title { font-size: clamp(2rem, 3vw, 2.6rem); font-style: italic; font-weight: 400; }
+  .fee__title { font-size: clamp(2rem, 3vw, 2.6rem); font-weight: 400; }
   .fee__list { margin-top: 1.75rem; }
   .fee__list > div { padding-block: 0.9rem; border-bottom: 1px solid var(--hairline); }
   .fee__list > div:first-child { border-top: 1px solid var(--hairline); }
-  .fee__list dt { font-family: var(--font-text); font-size: 0.875rem; color: var(--ink-quiet); font-weight: 400; }
+  .fee__list dt { font-family: var(--font-text); font-size: 1rem; color: var(--ink-quiet); font-weight: 400; }
   .fee__list dd { margin: 0.15rem 0 0; font-family: var(--font-display); font-size: 1.5rem; line-height: 1.25; }
-  .fee__note { margin: 1.5rem auto 2rem; max-width: 22rem; font-size: 0.9375rem; color: var(--ink-muted); }
+  .fee__note { margin: 1.5rem auto 2rem; max-width: 22rem; font-size: 1rem; color: var(--ink-muted); }
   .fee .btn:focus-visible { outline-color: var(--navy-900); }
 
   .bring__media { overflow: hidden; margin-bottom: 2rem; aspect-ratio: 16 / 9; }
@@ -637,7 +641,7 @@
   .bring__title { font-size: var(--step-2); margin-bottom: 1rem; }
   .bring p { color: var(--on-navy-muted); max-width: 38rem; }
   .bring p + p { margin-top: 1rem; }
-  .bring .bring__aside { font-family: var(--font-display); font-style: italic; font-size: 1.25rem; color: var(--on-navy); }
+  .bring .bring__aside { font-family: var(--font-display); font-size: 1.25rem; color: var(--on-navy); }
 
   .candor {
     margin: clamp(4.5rem, 9vw, 7rem) auto 0;
@@ -666,12 +670,12 @@
     display: grid;
     place-items: center;
   }
-  .attorney__mark span { font-family: var(--font-display); font-style: italic; font-size: 1.35rem; color: var(--navy-900); }
+  .attorney__mark span { font-family: var(--font-display); font-size: 1.35rem; color: var(--navy-900); }
   .attorney__name { font-size: clamp(2.5rem, 4.4vw, 3.75rem); margin-top: 1.75rem; letter-spacing: 0; }
   .attorney__role { margin-top: 0.5rem; font-size: 1rem; color: var(--gold-ink); }
   .attorney .rule { margin-bottom: 1.5rem; }
   .attorney p:not([class]) { font-size: 1.125rem; max-width: 30rem; }
-  .attorney__meta { margin-top: 0.75rem; font-size: 0.9375rem; color: var(--ink-muted); }
+  .attorney__meta { margin-top: 0.75rem; font-size: 1rem; color: var(--ink-muted); }
 
   /* ---------------- Approach ---------------- */
   .approach { display: grid; gap: 3.5rem; }
@@ -698,8 +702,9 @@
     .faq-wrap { grid-template-columns: 5fr 7fr; gap: clamp(3.5rem, 7vw, 7rem); align-items: start; }
     .faq-head { position: sticky; top: 8rem; margin-bottom: 0; }
   }
-  .faq__label { margin-top: 1.5rem; font-family: var(--font-display); font-style: italic; font-size: 1.25rem; color: var(--ink); }
-  .faq__review { margin-top: 0.35rem; font-size: 0.9375rem; color: var(--ink-muted); }
+  .faq-head .section-title { font-size: clamp(2.3rem, 3.6vw, 3.25rem); }
+  .faq__label { margin-top: 1.5rem; font-family: var(--font-display); font-size: 1.25rem; color: var(--ink); }
+  .faq__review { margin-top: 0.35rem; font-size: 1rem; color: var(--ink-muted); }
   .faq { border-top: 1px solid var(--hairline); }
   .faq__item { border-bottom: 1px solid var(--hairline); }
   .faq__item summary {
@@ -729,7 +734,7 @@
   .faq__item[open] summary::after { transform: rotate(135deg); }
   .faq__item summary:hover span { text-decoration: underline; text-decoration-color: var(--gold-rule); text-underline-offset: 0.25em; }
   .faq__answer { padding: 0 2.6rem 1.75rem 0; color: var(--ink-muted); }
-  .faq__cite { margin-top: 0.75rem; font-size: 0.8125rem; letter-spacing: 0.03em; color: var(--ink-quiet); }
+  .faq__cite { margin-top: 0.75rem; font-size: 0.9375rem; letter-spacing: 0.03em; color: var(--ink-quiet); }
 
   /* ---------------- Insights: reading list ---------------- */
   .insights { border-top: 1px solid var(--gold-rule); }
@@ -743,7 +748,7 @@
   .insight__title { font-size: clamp(1.5rem, 2.2vw, 2rem); line-height: 1.2; }
   .insight__title a { text-decoration: none; cursor: default; background: linear-gradient(var(--gold-rule), var(--gold-rule)) left bottom / 0 1px no-repeat; transition: background-size 0.7s var(--ease-draw); }
   .insight:hover .insight__title a { background-size: 100% 1px; }
-  .insight__teaser { color: var(--ink-muted); font-size: 1rem; max-width: 36rem; }
+  .insight__teaser { color: var(--ink-muted); font-size: 1.0625rem; max-width: 36rem; }
   @media (min-width: 960px) {
     .insight { grid-template-columns: 2fr 6fr 5fr; gap: 2.5rem; align-items: baseline; padding-block: 2.5rem; }
   }
@@ -766,15 +771,15 @@
     align-items: center;
     gap: 0.6rem;
   }
-  .info dt .tag { font-size: 0.625rem; }
+  .info dt .tag { font-size: 0.75rem; }
   .info dd { margin: 0.4rem 0 0; font-family: var(--font-display); font-size: 1.2rem; line-height: 1.4; }
   @media (min-width: 640px) { .info dd { font-size: 1.375rem; line-height: 1.35; } }
   .info dd a { text-decoration-color: rgba(212, 183, 124, 0.6); }
   .info dd a:hover { color: var(--gold); }
   .area { margin-top: 2.5rem; }
   .area .rule { margin: 0 0 1.25rem; }
-  .area__line { font-family: var(--font-display); font-style: italic; font-size: 1.35rem; line-height: 1.35; }
-  .area__cities { display: flex; flex-wrap: wrap; gap: 0.25rem 0; margin-top: 0.85rem; color: var(--on-navy-muted); font-size: 0.9375rem; }
+  .area__line { font-family: var(--font-display); font-size: 1.35rem; line-height: 1.35; }
+  .area__cities { display: flex; flex-wrap: wrap; gap: 0.25rem 0; margin-top: 0.85rem; color: var(--on-navy-muted); font-size: 1rem; }
   .area__cities li:not(:last-child)::after { content: "·"; margin-inline: 0.6rem; color: var(--gold); }
 
   /* Form */
@@ -786,7 +791,7 @@
     border-top: 1px solid var(--gold-rule);
   }
   .form__title { font-size: var(--step-2); }
-  .form__static { margin-top: 0.4rem; font-size: 0.875rem; color: var(--ink-quiet); }
+  .form__static { margin-top: 0.4rem; font-size: 1rem; color: var(--ink-quiet); }
   .form__grid { display: grid; gap: 1.25rem; margin-top: 2rem; }
   @media (min-width: 640px) {
     .form__grid { grid-template-columns: 1fr 1fr; }
@@ -795,7 +800,7 @@
   .field label, .field legend {
     display: block;
     font-size: 0.9375rem;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--ink);
     margin-bottom: 0.4rem;
   }
@@ -824,7 +829,7 @@
   .field__error {
     margin-top: 0.4rem;
     font-size: 0.875rem;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--error);
     display: flex;
     gap: 0.4rem;
@@ -845,7 +850,7 @@
     transform: translateY(0.1rem);
   }
   .field__error[hidden] { display: none; }
-  .field__hint { margin-top: 0.4rem; font-size: 0.8125rem; color: var(--ink-quiet); }
+  .field__hint { margin-top: 0.4rem; font-size: 0.9375rem; color: var(--ink-quiet); }
 
   .choice__row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; }
   .choice__opt, .check {
@@ -880,7 +885,7 @@
     border: 1px solid var(--navy-900);
     background: var(--ivory);
     color: var(--navy-900);
-    font-weight: 500;
+    font-weight: 600;
     text-align: center;
   }
 
@@ -892,15 +897,15 @@
     background: var(--navy-950);
     color: var(--on-navy-muted);
     padding-block: clamp(3.5rem, 7vw, 5.5rem) 7rem; /* bottom 5rem+ stays clear for the switcher */
-    font-size: 0.9375rem;
+    font-size: 1rem;
   }
   .site-footer__inner { display: grid; gap: 2rem; }
   @media (min-width: 960px) { .site-footer__inner { grid-template-columns: 5fr 7fr; gap: 7rem; } }
   .site-footer .brand__name { color: var(--on-navy); font-size: 1.6rem; }
-  .site-footer__fict { font-family: var(--font-text); font-size: 0.8125rem; letter-spacing: 0.04em; color: var(--on-navy-muted); }
+  .site-footer__fict { font-family: var(--font-text); font-size: 0.9375rem; letter-spacing: 0.04em; color: var(--on-navy-muted); }
   .site-footer__legal p + p { margin-top: 0.5rem; }
   .site-footer a { color: var(--gold); }
-  .site-footer__studio { margin-top: 1.25rem !important; padding-top: 1.25rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.8125rem; }
+  .site-footer__studio { margin-top: 1.25rem !important; padding-top: 1.25rem; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9375rem; }
 }
 
 /* ------------------------------------------------------------------------

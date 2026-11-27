@@ -13,7 +13,7 @@
   <meta name="theme-color" content="#0b1524">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="../assets/img/lake-dusk-01-1200.webp" imagesrcset="../assets/img/lake-dusk-01-640.webp 640w, ../assets/img/lake-dusk-01-1200.webp 1200w, ../assets/img/lake-dusk-01-2400.webp 2400w" imagesizes="100vw">
   <link rel="stylesheet" href="styles.css">
   <script src="main.js" defer></script>
@@ -46,11 +46,11 @@
 
       <nav class="site-nav" aria-label="Primary">
         <ul>
-          <li><a href="#practice">Practice areas</a></li>
-          <li><a href="#consultation">Consultation</a></li>
+          <li><a href="#practice">Practice<span class="nav-full">&nbsp;areas</span></a></li>
+          <li><a href="#consultation">Consult<span class="nav-full">ation</span></a></li>
           <li><a href="#attorneys">Attorneys</a></li>
-          <li><a href="#approach">Approach</a></li>
-          <li><a href="#faq">Questions</a></li>
+          <li class="nav-wide"><a href="#approach">Approach</a></li>
+          <li><a href="#faq">FAQ</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -74,7 +74,7 @@
       <div class="hero__veil" aria-hidden="true"></div>
 
       <div class="hero__inner">
-        <p class="hero__place">Family law and estate planning in Southlake, Texas</p>
+        <p class="hero__place">Family law and estate planning attorneys in Southlake, Texas</p>
         <h1 class="hero__title" id="hero-title">When your family is changing, <em>start with a quiet conversation.</em></h1>
         <span class="hero__horizon" aria-hidden="true"></span>
         <div class="hero__foot">
@@ -91,17 +91,17 @@
     <section class="section section--ivory" id="practice" aria-labelledby="practice-title">
       <div class="container">
         <header class="section-head section-head--split reveal">
-          <h2 class="section-title" id="practice-title">What brings people to us</h2>
-          <p class="section-lede">If this is new to you, here is what each area covers, in plain terms.</p>
+          <h2 class="section-title" id="practice-title">Practice areas</h2>
+          <p class="section-lede">What brings people to us, in plain terms. If this is new to you, here is what each area covers.</p>
         </header>
 
         <figure class="practice__band reveal">
           <img
-            src="../assets/img/family-walking-lane-01-1200.webp"
-            srcset="../assets/img/family-walking-lane-01-640.webp 640w, ../assets/img/family-walking-lane-01-1200.webp 1200w, ../assets/img/family-walking-lane-01-2400.webp 2400w"
+            src="../assets/img/conference-table-windows-01-1200.webp"
+            srcset="../assets/img/conference-table-windows-01-640.webp 640w, ../assets/img/conference-table-windows-01-1200.webp 1200w, ../assets/img/conference-table-windows-01-2400.webp 2400w"
             sizes="(min-width: 1400px) 1240px, 92vw"
             width="2400" height="1600" loading="lazy"
-            alt="An adult and a small child walking hand in hand down a sunlit gravel lane">
+            alt="Daylight from tall windows across an empty conference table">
         </figure>
 
         <div class="practice__groups">
@@ -155,15 +155,15 @@
       </div>
     </section>
 
-    <!-- Interlude: the room where the first meeting happens -->
+    <!-- Interlude: a reading pause before the consultation details -->
     <section class="interlude" aria-label="The first meeting">
       <div class="interlude__media">
         <img
-          src="../assets/img/conference-table-windows-01-1200.webp"
-          srcset="../assets/img/conference-table-windows-01-640.webp 640w, ../assets/img/conference-table-windows-01-1200.webp 1200w, ../assets/img/conference-table-windows-01-2400.webp 2400w"
-          sizes="100vw"
-          width="2400" height="1600" loading="lazy"
-          alt="Daylight from tall windows across an empty conference table">
+            src="../assets/img/glasses-on-paper-01-1200.webp"
+            srcset="../assets/img/glasses-on-paper-01-640.webp 640w, ../assets/img/glasses-on-paper-01-1200.webp 1200w, ../assets/img/glasses-on-paper-01-2400.webp 2400w"
+            sizes="100vw"
+            width="2400" height="1600" loading="lazy"
+            alt="Reading glasses resting on a printed page">
       </div>
       <div class="container interlude__wrap">
         <div class="interlude__panel">
@@ -282,17 +282,17 @@
       <div class="container approach">
         <figure class="approach__media reveal">
           <img
-            src="../assets/img/glasses-on-paper-01-1200.webp"
-            srcset="../assets/img/glasses-on-paper-01-640.webp 640w, ../assets/img/glasses-on-paper-01-1200.webp 1200w, ../assets/img/glasses-on-paper-01-2400.webp 2400w"
-            sizes="(min-width: 960px) 40vw, 100vw"
+            src="../assets/img/family-walking-lane-01-1200.webp"
+            srcset="../assets/img/family-walking-lane-01-640.webp 640w, ../assets/img/family-walking-lane-01-1200.webp 1200w, ../assets/img/family-walking-lane-01-2400.webp 2400w"
+            sizes="(min-width: 960px) 34vw, 100vw"
             width="2400" height="1600" loading="lazy"
-            alt="Reading glasses resting on a printed page">
+            alt="An adult and a small child walking hand in hand down a sunlit gravel lane">
         </figure>
 
         <div class="approach__body">
           <header class="section-head reveal">
-            <h2 class="section-title" id="approach-title">How we intend to work</h2>
-            <p class="section-lede section-lede--left">Our approach, in plain language. These describe how we handle a matter, not how it will turn out.</p>
+            <h2 class="section-title" id="approach-title">Our approach</h2>
+            <p class="section-lede section-lede--left">How we intend to work, in plain language. These describe how we handle a matter, not how it will turn out.</p>
           </header>
           <dl class="values">
             <div class="value">
@@ -324,7 +324,7 @@
     <section class="section section--ivory" id="faq" aria-labelledby="faq-title">
       <div class="container faq-wrap">
         <header class="section-head faq-head reveal">
-          <h2 class="section-title" id="faq-title">Questions people often ask first</h2>
+          <h2 class="section-title" id="faq-title">Frequently asked questions</h2>
           <span class="rule" aria-hidden="true"></span>
           <p class="faq__label">General information, not legal advice</p>
           <p class="faq__review">Reviewed by: [attorney name]</p>
@@ -382,8 +382,8 @@
     <section class="section section--paper" id="insights" aria-labelledby="insights-title">
       <div class="container">
         <header class="section-head section-head--split reveal">
-          <h2 class="section-title" id="insights-title">Notes on the words in your court papers</h2>
-          <p class="section-lede">Short, plain-language reading on Texas terms that tend to confuse people.</p>
+          <h2 class="section-title" id="insights-title">Insights</h2>
+          <p class="section-lede">Notes on the words in your court papers: short, plain-language reading on Texas terms that tend to confuse people.</p>
         </header>
 
         <ul class="insights" role="list">

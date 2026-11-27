@@ -270,20 +270,17 @@ main:not(#\#) { padding-bottom: 0; }
   border-top: 1px solid var(--rule);
 }
 .hero__inner { display: grid; gap: var(--s8); padding-block: var(--s6) var(--s10); }
-.hero__kicker {
-  margin-bottom: var(--s4);
-  font-size: 0.9375rem; font-weight: 700; letter-spacing: 0.02em; color: var(--oxblood);
-}
-.hero h1 { font-size: var(--h1); line-height: 1.08; letter-spacing: -0.012em; max-width: 21ch; }
+.hero h1 { font-size: var(--h1); line-height: 1.08; letter-spacing: -0.012em; max-width: 16ch; }
 .hero__lede { margin: var(--s4) 0 0; font-size: var(--text-base); line-height: 1.55; color: var(--body); max-width: 36rem; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s6); }
 .hero__actions .btn { flex: 1 1 15rem; }
-.hero__note { margin-top: var(--s5); font-size: var(--text-sm); color: var(--muted); }
+.hero__lede strong { color: var(--ink); font-weight: 600; }
+.hero__note { margin-top: var(--s5); font-size: var(--text-base); color: var(--muted); }
 .hero__note a { font-weight: 600; }
 
 .hero__media { margin: 0; position: relative; }
 .hero__media img {
-  width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 35%;
+  width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 15%;
   box-shadow: var(--shadow-card);
 }
 .hero__media::after {
@@ -341,7 +338,6 @@ main:not(#\#) { padding-bottom: 0; }
   content: ""; position: absolute; left: calc(0.5rem - 1px); top: 1.6rem; bottom: 0.3rem; width: 2px; background: #cfc6b6;
 }
 .step:last-child::after { display: none; }
-.step:nth-child(3)::before { background: var(--oxblood); border-color: var(--oxblood); }
 .step__name { font-size: var(--h3); margin-bottom: var(--s2); }
 .step p { max-width: 34rem; }
 
@@ -360,7 +356,7 @@ main:not(#\#) { padding-bottom: 0; }
   padding-block: var(--s3); border-top: 1px solid var(--rule);
 }
 .consult-card__list div:last-child { border-bottom: 1px solid var(--rule); }
-.consult-card__list dt { font-size: var(--text-sm); font-weight: 600; color: var(--muted); }
+.consult-card__list dt { font-size: 1rem; font-weight: 600; color: var(--muted); }
 .consult-card__list dd { margin: 0; font-weight: 600; color: var(--ink); }
 
 .bring__img { width: 100%; aspect-ratio: 2.2 / 1; object-fit: cover; }
@@ -397,7 +393,7 @@ main:not(#\#) { padding-bottom: 0; }
 .approach h2 { color: var(--white); }
 .approach__inner { display: grid; gap: var(--s10); }
 .approach__intro p { margin-top: var(--s4); font-size: var(--text-lg); max-width: 32rem; }
-.approach__img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; margin-top: var(--s8); }
+.approach__img { width: 100%; aspect-ratio: 2 / 1; object-fit: cover; object-position: 30% 0%; margin-top: var(--s8); }
 .values { display: grid; gap: 0; align-content: start; }
 .value { padding-block: var(--s6); border-top: 1px solid #344257; }
 .value:first-child { border-top: 0; padding-top: 0; }
@@ -411,7 +407,7 @@ main:not(#\#) { padding-bottom: 0; }
   margin-top: var(--s5); margin-bottom: var(--s1);
   font-weight: 700; color: var(--ink);
 }
-.faq__review { color: var(--muted); font-size: var(--text-sm); }
+.faq__review { color: var(--muted); font-size: 1rem; }
 .faq__more { margin-top: var(--s5); padding-top: var(--s5); border-top: 1px solid var(--rule); max-width: 24rem; }
 
 .faq__list { border-top: 2px solid var(--ink); }
@@ -431,7 +427,7 @@ main:not(#\#) { padding-bottom: 0; }
 .faq-item summary:hover { color: var(--oxblood); }
 .faq-item summary:focus-visible { outline-offset: 2px; }
 .faq-item__body { padding: 0 3rem var(--s6) 0; max-width: 46rem; }
-.cite { font-size: var(--text-sm); color: var(--muted); }
+.cite { font-size: 1rem; color: var(--muted); }
 
 /* ---------- Insights ---------- */
 .insights { background: var(--limestone); border-top: 1px solid var(--rule); }
@@ -630,7 +626,7 @@ main:not(#\#) { padding-bottom: 0; }
   .hero__media img {
     aspect-ratio: 4 / 5;
     /* the image (not the hero) is capped so the whole hero stays under min(100svh, 1000px) */
-    max-height: min(calc(100svh - 14rem), 44rem);
+    max-height: min(calc(100svh - 20rem), 44rem);
   }
 
   .practice-group { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 4vw, 4rem); padding-top: var(--s10); }

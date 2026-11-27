@@ -4,7 +4,7 @@ Design preview prepared by Premier Code Inc.
 
 Preview: https://attorney.premiercodeinc.com/
 
-Hollis & Avery Law, PLLC is a **fictional firm**. Its attorneys, phone, email, address, hours, fee and articles are samples, and every page says so. The photos are royalty-free stock and do not show the firm, its people or its clients.
+Hollis & Avery Law, PLLC is a **fictional firm**. Its attorneys, phone, email, address, hours, fee and articles are samples, and every page says so. The photos are royalty-free stock (Wikimedia Commons and Pexels) and do not show the firm, its people, its office or its clients.
 
 ## The three options
 
@@ -12,9 +12,9 @@ Use the switcher at the bottom left of each page to move between them.
 
 | Option | Concept | Link |
 |---|---|---|
-| Option A | **Quiet authority.** Deep navy and ivory, Bodoni Moda and Jost, thin gold rules and a dusk hero. | https://attorney.premiercodeinc.com/option-a/ |
-| Option B | **Modern counsel.** Warm stone and sage, one humanist sans, and a guide written in the visitor's own words. | https://attorney.premiercodeinc.com/option-b/ |
-| Option C | **The brief.** A legal memo on the page: To/From/Re header, named sections with margin notes, black and white with one red accent. | https://attorney.premiercodeinc.com/option-c/ |
+| Option A | **Quiet authority.** Deep navy and ivory, Libre Caslon Text headings with Source Sans 3, thin gold rules and a dusk hero. | https://attorney.premiercodeinc.com/option-a/ |
+| Option B | **Main Street firm.** Bright white and limestone with oxblood and brass, Source Serif 4 and Source Sans 3, a three-tier header and practice-area cards. | https://attorney.premiercodeinc.com/option-b/ |
+| Option C | **Warm counsel.** Deep teal, cream and brass, Libre Baskerville with Figtree, a split hero with the sample consultation card. | https://attorney.premiercodeinc.com/option-c/ |
 
 Photo credits: https://attorney.premiercodeinc.com/credits.html
 

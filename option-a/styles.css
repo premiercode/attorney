@@ -546,8 +546,8 @@
      The one daylight photo is warmed and dimmed to sit in the dusk palette,
      and fades to navy into the quote panel. */
   .interlude { position: relative; background: var(--navy-900); }
-  .interlude__media { position: relative; height: clamp(300px, 42vw, 620px); overflow: hidden; }
-  .interlude__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; filter: saturate(0.7) brightness(0.8); }
+  .interlude__media { position: relative; height: clamp(260px, 30vw, 440px); overflow: hidden; }
+  .interlude__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; filter: saturate(0.7) brightness(0.8); }
   .interlude__media::after {
     content: "";
     position: absolute;
@@ -678,15 +678,11 @@
   .attorney__meta { margin-top: 0.75rem; font-size: 1rem; color: var(--ink-muted); }
 
   /* ---------------- Approach ---------------- */
-  .approach { display: grid; gap: 3.5rem; }
-  .approach__media { aspect-ratio: 4 / 3; overflow: hidden; }
-  .approach__media img { width: 100%; height: 100%; object-fit: cover; }
+  .approach { display: grid; gap: 1rem; }
   @media (min-width: 960px) {
     .approach { grid-template-columns: 5fr 7fr; gap: clamp(3.5rem, 7vw, 7rem); align-items: start; }
-    .approach__media { aspect-ratio: 4 / 5; position: sticky; top: 8rem; }
-    .approach__media img { object-position: 40% 50%; }
+    .approach__head { position: sticky; top: 8rem; margin-bottom: 0; }
   }
-  .approach .section-head { margin-bottom: 2.5rem; }
   .values { border-top: 1px solid var(--hairline); }
   .value { padding-block: 1.6rem; border-bottom: 1px solid var(--hairline); }
   .value dt { font-size: 1.5rem; line-height: 1.2; }

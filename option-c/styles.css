@@ -251,8 +251,8 @@
       text-align: center;
       max-width: 9.5rem;
     }
-    .nav ul { gap: 0 0.7rem; }
-    .nav a { font-size: 0.875rem; min-height: 2.75rem; }
+    .nav ul { gap: 0 0.55rem; }
+    .nav a { font-size: 0.9375rem; min-height: 2.75rem; }
     .hero__copy { padding-top: 1.75rem; }
     .hero__reassure { margin-top: 0.7rem; padding-top: 0.7rem; }
     .hero__lede { margin-top: 1rem; }
@@ -327,7 +327,9 @@
     width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
-    object-position: 58% 55%;
+    object-position: 82% 55%;
+    /* Trim the left of the frame (calculator and phone) at every width so hands, pen and form lead. */
+    object-view-box: inset(0 0 0 28%);
   }
 
   .consult-card {
@@ -379,8 +381,6 @@
       width: 100%; height: 100%;
       aspect-ratio: auto;
       object-position: 85% 60%;
-      /* Trim the left of the frame (calculator and phone) so hands, pen and form lead. */
-      object-view-box: inset(0 0 0 28%);
     }
     .consult-card {
       position: absolute;
@@ -405,8 +405,8 @@
     box-shadow: 0 1px 2px rgba(10, 50, 57, 0.06), 0 14px 36px -24px rgba(10, 50, 57, 0.4);
   }
   .practice__img { width: 100%; aspect-ratio: 21 / 9; object-fit: cover; }
-  .practice:first-child .practice__img { object-position: 50% 70%; }
-  .practice:last-child .practice__img { object-position: 50% 40%; }
+  .practice:first-child .practice__img { object-position: 50% 40%; }
+  .practice:last-child .practice__img { object-position: 50% 70%; }
   @media (max-width: 599px) {
     .practice__img { aspect-ratio: 16 / 10; }
   }

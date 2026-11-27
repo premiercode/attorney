@@ -123,6 +123,15 @@
     });
   });
 
+  /* Quick exit: replace this page in history so Back doesn't return here. The plain link works without JS. */
+  var exit = document.querySelector('.quick-exit');
+  if (exit) {
+    exit.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.location.replace(exit.href);
+    });
+  }
+
   var statusTimer;
   form.addEventListener('submit', function (e) {
     e.preventDefault();

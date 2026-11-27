@@ -514,6 +514,21 @@
   .matter__list > div { padding-block: 1.4rem; border-bottom: 1px solid var(--hairline); }
   .matter__list dt { font-size: 1.375rem; line-height: 1.25; }
   .matter__list dd { margin: 0.5rem 0 0; color: var(--ink-muted); font-size: 1rem; max-width: 36rem; }
+  .matter__more {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 2rem;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--gold-rule);
+    text-underline-offset: 0.35em;
+  }
+  .matter__more { max-width: 26rem; text-wrap: balance; line-height: 1.45; }
+  .matter__more:hover { color: var(--gold-ink); }
   @media (min-width: 960px) {
     .practice__groups { grid-template-columns: 1fr 1fr; gap: 0; align-items: start; }
     .matter:first-child { padding-right: clamp(2.5rem, 5vw, 5rem); }

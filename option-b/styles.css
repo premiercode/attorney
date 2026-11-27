@@ -643,6 +643,16 @@ fieldset.field { border: 0; margin: 0; padding: 0; }
   .site-footer__inner { grid-template-columns: 1fr 1fr; gap: var(--space-12); }
 }
 
+/* Short laptop screens (e.g. 1366x768): keep the hero's call to action clear of the
+   bottom-left switcher. The sample format line also appears, labeled, in the fee panel. */
+@media (min-width: 960px) and (max-height: 820px) {
+  .hero { padding-top: var(--space-10); padding-bottom: var(--space-16); }
+  .hero__title { font-size: clamp(2.5rem, 1.4rem + 2.6vw, 3.5rem); }
+  .hero__lede { margin-top: var(--space-4); }
+  .hero__actions { margin-top: var(--space-6); }
+  .hero .hero__fine { display: none; }
+}
+
 /* Very wide screens: scale the whole system up a step, keep a firm max width */
 @media (min-width: 2200px) {
   html { font-size: 112.5%; }

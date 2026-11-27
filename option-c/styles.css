@@ -746,7 +746,7 @@
     font-size: 0.8125rem; font-weight: 700; line-height: 1;
     margin-top: 0.1rem;
   }
-  .field [aria-invalid="true"] { border-color: var(--error) !important; border-width: 2px !important; box-shadow: inset 4px 0 0 var(--error); }
+  .field [aria-invalid="true"]:not([type="radio"]) { border-color: var(--error) !important; border-width: 2px !important; box-shadow: inset 4px 0 0 var(--error); }
   .field--choice[aria-invalid="true"] .choices { padding-left: 0.75rem; border-left: 4px solid var(--error); }
   .field--check:has(.field__error:not([hidden])) .check { padding-left: 0.75rem; border-left: 4px solid var(--error); }
 
@@ -854,3 +854,5 @@ body > .site-footer:not(#\#) { padding-bottom: max(env(safe-area-inset-bottom), 
   .site-header { position: static; }
   .js .settle { opacity: 1; transform: none; }
 }
+
+.steps__note { margin: 1rem 0 0; }

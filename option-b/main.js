@@ -21,7 +21,7 @@
       if (menu.open && e.relatedTarget && !menu.contains(e.relatedTarget)) menu.open = false;
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && menu.open) {
+      if (e.key === 'Escape' && menu.open && (menu.contains(document.activeElement) || document.activeElement === document.body)) {
         menu.open = false;
         menu.querySelector('summary').focus();
       }

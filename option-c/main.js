@@ -91,7 +91,8 @@
       error.textContent = 'Error: ' + message;
       error.hidden = false;
       target.setAttribute('aria-invalid', 'true');
-      target.setAttribute('aria-describedby', (base + ' ' + error.id).trim());
+      // The radios carry the description themselves; describing the fieldset too would read it twice.
+      if (!field.matches('fieldset')) target.setAttribute('aria-describedby', (base + ' ' + error.id).trim());
     } else {
       error.textContent = '';
       error.hidden = true;

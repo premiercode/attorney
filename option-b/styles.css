@@ -41,7 +41,7 @@
   --shadow-card: 0 1px 2px rgb(20 32 46 / 0.06), 0 8px 24px -14px rgb(20 32 46 / 0.25);
   --ease: cubic-bezier(.2, .7, .2, 1);
 
-  --wrap: 82rem;
+  --wrap: clamp(82rem, 55vw, 110rem); /* grows on very wide screens without touching type size */
   --gutter: clamp(1.125rem, 4vw, 2.5rem);
 }
 
@@ -674,3 +674,8 @@ main:not(#\#) { padding-bottom: 0; }
   .preview-bar, .utility, .navstrip, .mobile-menu, .form-card { display: none; }
   .js .section .ruled::before { transform: none; }
 }
+
+/* Small note under stock photos and the sample steps, so nothing reads as the firm's own building or office. */
+.photo-note { margin: 0.5rem 0 0; font-size: 0.875rem; color: var(--muted); }
+.contact__figure { margin: 0; }
+.contact__figure .contact__img { margin-bottom: 0; }

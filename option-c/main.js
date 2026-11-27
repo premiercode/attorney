@@ -1,164 +1,147 @@
-/* Option C: "The brief". Progressive enhancement only; the page works without this file. */
+/* Option C: Warm counsel. Progressive enhancement only; the page works fully without this file. */
 (function () {
   'use strict';
+  document.documentElement.classList.add('js');
 
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var hasIO = 'IntersectionObserver' in window;
-
-  /* 1. Glossed terms: hovering a red-underlined term lights its margin note, and the reverse. */
-  document.querySelectorAll('.gloss[data-gloss]').forEach(function (term) {
-    var note = document.querySelector('.note[data-note="' + term.getAttribute('data-gloss') + '"]');
-    if (!note) return;
-    var on = function () { term.classList.add('is-lit'); note.classList.add('is-lit'); };
-    var off = function () { term.classList.remove('is-lit'); note.classList.remove('is-lit'); };
-    [term, note].forEach(function (el) {
-      el.addEventListener('mouseenter', on);
-      el.addEventListener('mouseleave', off);
+  /* ---------- Quick exit: replace this page in history so Back doesn't return here ---------- */
+  document.querySelectorAll('[data-quick-exit]').forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+      window.location.replace(link.href);
     });
   });
 
-  /* 2. Side-head rules: the double rule over each heading draws in once, as the section arrives. */
-  var heads = Array.prototype.slice.call(document.querySelectorAll('.side-head'));
-  if (reduce || !hasIO) {
-    heads.forEach(function (h) { h.classList.add('is-in'); });
+  /* ---------- Settle-in reveal (CSS hides .settle only under .js and no reduced motion) ---------- */
+  var settles = Array.prototype.slice.call(document.querySelectorAll('.settle'));
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) {
+    settles.forEach(function (el) { el.classList.add('is-in'); });
   } else {
-    var ruleIO = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add('is-in'); ruleIO.unobserve(en.target); }
+    // Siblings arrive one after another, like pages set down in turn.
+    settles.forEach(function (el) {
+      var siblings = Array.prototype.filter.call(el.parentElement.children, function (c) {
+        return c.classList.contains('settle');
       });
-    }, { rootMargin: '0px 0px -10% 0px' });
-    heads.forEach(function (h) { ruleIO.observe(h); });
-  }
-
-  /* 3. Running head: once the cover is out of view, a slim line names the part being read. */
-  var rh = document.querySelector('[data-running-head]');
-  var rhName = rh && rh.querySelector('[data-rh-section]');
-  var cover = document.querySelector('.cover');
-  var sections = Array.prototype.slice.call(document.querySelectorAll('main [data-section]'));
-  if (rh && rhName && cover && hasIO) {
-    rh.hidden = false;
-    var setShown = function (shown) {
-      rh.classList.toggle('is-shown', shown);
-      // If focus is inside the bar as it hides, hand it to the hero heading first.
-      if (!shown && rh.contains(document.activeElement)) {
-        var h = document.getElementById('hero-h');
-        h.setAttribute('tabindex', '-1');
-        h.focus({ preventScroll: true });
-      }
-      // inert keeps the hidden bar out of the tab order and the accessibility tree.
-      rh.inert = !shown;
-      // Browsers without inert: at least keep the hidden bar's links out of the tab order.
-      if (!('inert' in HTMLElement.prototype)) {
-        rh.querySelectorAll('a').forEach(function (a) { a.tabIndex = shown ? 0 : -1; });
-      }
-    };
-    setShown(false);
-    new IntersectionObserver(function (entries) {
-      setShown(!entries[0].isIntersecting);
-    }, { rootMargin: '-60px 0px 0px 0px' }).observe(cover);
-
-    // The current section is the last one whose top has passed the upper third of the screen.
-    var update = function () {
-      var line = window.innerHeight * 0.33;
-      var current = sections[0];
-      for (var i = 0; i < sections.length; i++) {
-        if (sections[i].getBoundingClientRect().top <= line) current = sections[i];
-      }
-      var name = current ? current.getAttribute('data-section') : '';
-      if (rhName.textContent !== name) rhName.textContent = name;
-    };
-    var ticking = false;
-    window.addEventListener('scroll', function () {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(function () { update(); ticking = false; });
-    }, { passive: true });
-    update();
-  }
-
-  /* 4. Quick exit: replace history so Back doesn't return here. */
-  var exit = document.querySelector('[data-quick-exit]');
-  if (exit) {
-    exit.addEventListener('click', function (e) {
-      e.preventDefault();
-      window.location.replace(exit.href);
+      el.style.setProperty('--settle-delay', (siblings.indexOf(el) * 90) + 'ms');
     });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    settles.forEach(function (el) { io.observe(el); });
   }
 
-  /* 5. Preview form: validate, show inline errors, never send. */
+  /* ---------- Preview form ---------- */
   var form = document.getElementById('consult-form');
   if (!form) return;
-  form.setAttribute('novalidate', '');
+  form.noValidate = true;
 
-  var status = form.querySelector('[data-status]');
-  var desc = form.querySelector('#f-desc');
-  var count = form.querySelector('[data-count]');
+  var status = document.getElementById('form-status');
+  var statusTimer = null;
+  var attempted = false;
 
-  var messages = {
-    'f-name': 'Please enter your name.',
-    'f-phone': 'Please enter a phone number.',
-    'f-email': 'Please enter a valid email address.',
-    'f-area': 'Please choose a practice area, or “Not sure.”',
-    'f-ack': 'Please check “I understand” to continue.'
-  };
-
-  function errFor(field) {
-    var ids = (field.getAttribute('aria-describedby') || '').split(' ');
-    for (var i = 0; i < ids.length; i++) {
-      var el = document.getElementById(ids[i]);
-      if (el && el.classList.contains('err')) return el;
-    }
-    return null;
+  function announce(message, state) {
+    // Clear first, then set after a short pause, so a repeat submit is announced again.
+    clearTimeout(statusTimer);
+    status.textContent = '';
+    status.removeAttribute('data-state');
+    statusTimer = setTimeout(function () {
+      if (state) status.setAttribute('data-state', state);
+      status.textContent = message;
+    }, 100);
   }
 
-  function check(field) {
-    var err = errFor(field);
-    if (!err) return true;
-    if (field.checkValidity()) {
-      field.removeAttribute('aria-invalid');
-      err.hidden = true;
-      err.textContent = '';
-      return true;
-    }
-    field.setAttribute('aria-invalid', 'true');
-    err.textContent = messages[field.id] || field.validationMessage;
-    err.hidden = false;
-    return false;
+  function messageFor(control) {
+    var v = control.validity;
+    if (v.valueMissing) return control.dataset.msgMissing || 'This field is required.';
+    if (v.typeMismatch) return control.dataset.msgType || 'Check the format of this field.';
+    if (v.patternMismatch) return control.dataset.msgPattern || 'Check the format of this field.';
+    if (v.tooLong) return 'Keep this under ' + control.maxLength + ' characters.';
+    return control.validationMessage;
   }
 
-  var required = Array.prototype.slice.call(form.querySelectorAll('[required]'));
+  // The element that carries aria-invalid / aria-describedby for a field.
+  function targetOf(field) {
+    return field.matches('fieldset') ? field : field.querySelector('input, select, textarea');
+  }
 
-  required.forEach(function (field) {
-    var evt = field.type === 'checkbox' || field.tagName === 'SELECT' ? 'change' : 'blur';
-    field.addEventListener(evt, function () {
-      if (field.getAttribute('aria-invalid') === 'true' || field.value) check(field);
-    });
-    field.addEventListener('input', function () {
-      if (field.getAttribute('aria-invalid') === 'true') check(field);
-    });
+  function setError(field, message) {
+    var target = targetOf(field);
+    var error = field.querySelector('.field__error');
+    if (!target || !error) return;
+    var base = target.dataset.describedby || '';
+    if (message) {
+      error.textContent = 'Error: ' + message;
+      error.hidden = false;
+      target.setAttribute('aria-invalid', 'true');
+      target.setAttribute('aria-describedby', (base + ' ' + error.id).trim());
+    } else {
+      error.textContent = '';
+      error.hidden = true;
+      target.removeAttribute('aria-invalid');
+      if (base) target.setAttribute('aria-describedby', base);
+      else target.removeAttribute('aria-describedby');
+    }
+  }
+
+  function validate(field) {
+    var controls = field.querySelectorAll('input, select, textarea');
+    var invalid = null;
+    for (var i = 0; i < controls.length; i++) {
+      if (!controls[i].checkValidity()) { invalid = controls[i]; break; }
+    }
+    setError(field, invalid ? messageFor(invalid) : '');
+    return invalid;
+  }
+
+  var fields = Array.prototype.slice.call(form.querySelectorAll('[data-field]'))
+    .filter(function (f) { return f.querySelector('.field__error'); });
+
+  fields.forEach(function (field) {
+    field.addEventListener('change', function () { if (attempted) validate(field); });
+    field.addEventListener('input', function () { if (attempted) validate(field); });
   });
 
+  // Character count for the short description (maxlength enforces the limit).
+  var desc = document.getElementById('f-desc');
+  var count = document.getElementById('f-desc-count');
   if (desc && count) {
-    var updateCount = function () { count.textContent = desc.value.length + ' of 300 used.'; };
-    desc.addEventListener('input', updateCount);
-    updateCount();
+    desc.addEventListener('input', function () {
+      var left = desc.maxLength - desc.value.length;
+      count.textContent = left + (left === 1 ? ' character left.' : ' characters left.');
+    });
   }
 
-  // Set the message a tick after clearing it so a repeat submit is announced again.
-  var announce = function (msg) { setTimeout(function () { status.textContent = msg; }, 50); };
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    attempted = true;
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    status.textContent = '';
-    var firstBad = null;
-    required.forEach(function (field) {
-      if (!check(field) && !firstBad) firstBad = field;
+    var firstInvalid = null;
+    var invalidCount = 0;
+    fields.forEach(function (field) {
+      var bad = validate(field);
+      if (bad) {
+        invalidCount++;
+        if (!firstInvalid) firstInvalid = bad;
+      }
     });
-    if (firstBad) {
-      firstBad.focus();
-      announce('Please fix the marked fields above.');
+
+    if (firstInvalid) {
+      announce(invalidCount === 1
+        ? 'One field needs attention. It is marked Error.'
+        : invalidCount + ' fields need attention. Each is marked Error.', 'error');
+      firstInvalid.focus();
       return;
     }
+
+    // Honeypot filled means a bot. At launch the server drops it; here we just stop quietly.
+    var honeypot = form.querySelector('[name="company_website"]');
+    if (honeypot && honeypot.value) return;
+
     announce('Preview only. Nothing was sent.');
   });
 })();

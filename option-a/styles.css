@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /* ==========================================================================
    Option A: Quiet authority
-   Deep navy, ivory paper, Bodoni Moda (optical sizes) + Jost, thin gold rules.
+   Deep navy, ivory paper, Libre Caslon Text + Jost, thin gold rules.
    Motion idea: the hero "lights up" at dusk while a gold horizon rule draws
    across the water; later rules draw in as sections arrive, and the
    consultation path fills its nodes in order. Mobile-first.
@@ -39,7 +39,7 @@
     --gold-ink: #75561f;       /* gold text on ivory/paper: 5.4:1+ */
     --error: #9b2c1f;
 
-    --font-display: "Bodoni Moda", "Bodoni 72", Didot, "Times New Roman", serif;
+    --font-display: "Libre Caslon Text", Georgia, "Times New Roman", serif;
     --font-text: "Jost", "Futura", "Century Gothic", system-ui, sans-serif;
 
     /* Type scale, augmented fourth (1.414) */
@@ -82,14 +82,11 @@
   h1, h2, h3, dt {
     font-family: var(--font-display);
     font-kerning: normal;
-    font-feature-settings: "kern" 1;
-    font-weight: 500;
-    line-height: 1.1;
+    font-weight: 400;
+    line-height: 1.15;
     text-wrap: balance;
   }
   p, dd { text-wrap: pretty; }
-  /* Bodoni's capital W has a hairline right arm that reads as a gap at display sizes. */
-  .kw { margin-right: -0.06em; }
 
   a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
 
@@ -262,7 +259,7 @@
   .brand__name {
     font-family: var(--font-display);
     font-size: 1.5rem;
-    font-weight: 500;
+    font-weight: 400;
   }
   .brand__amp { font-style: italic; color: var(--on-navy-muted); }
   .brand__sub {
@@ -376,9 +373,9 @@
   .section-head--center { text-align: center; max-width: 54rem; margin-inline: auto; }
   .section-title {
     font-size: clamp(2.3rem, 4.6vw, var(--step-4));
-    font-weight: 500;
-    line-height: 1.06;
-    letter-spacing: -0.012em;
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: 0;
   }
   .section-title--lg { font-size: clamp(2.6rem, 5.6vw, 4.75rem); }
   .section-lede {
@@ -443,14 +440,14 @@
   .hero__title {
     max-width: 16ch;
     font-size: clamp(2.75rem, min(6.6vw, 9.4svh, 112px), 7.5rem);
-    font-weight: 500;
-    line-height: 0.98;
-    letter-spacing: -0.02em;
+    font-weight: 400;
+    line-height: 1.06;
+    letter-spacing: -0.005em;
     text-shadow: 0 2px 40px rgba(8, 16, 29, 0.45);
   }
   /* The hero is capped at 1000px, so very wide screens run the headline on two lines instead of four. */
   @media (min-width: 2400px) { .hero__title { max-width: none; } }
-  @media (max-width: 799px) { .hero__title { max-width: none; font-size: clamp(2.5rem, 11vw, 4rem); } }
+  @media (max-width: 799px) { .hero__title { max-width: none; font-size: clamp(2.25rem, 9.6vw, 4rem); } }
   .hero__title em { display: block; margin-top: 0.12em; font-weight: 400; color: var(--gold); }
   .hero__horizon {
     display: block;
@@ -670,7 +667,7 @@
     place-items: center;
   }
   .attorney__mark span { font-family: var(--font-display); font-style: italic; font-size: 1.35rem; color: var(--navy-900); }
-  .attorney__name { font-size: clamp(2.5rem, 4.4vw, 3.75rem); margin-top: 1.75rem; letter-spacing: -0.015em; }
+  .attorney__name { font-size: clamp(2.5rem, 4.4vw, 3.75rem); margin-top: 1.75rem; letter-spacing: 0; }
   .attorney__role { margin-top: 0.5rem; font-size: 1rem; color: var(--gold-ink); }
   .attorney .rule { margin-bottom: 1.5rem; }
   .attorney p:not([class]) { font-size: 1.125rem; max-width: 30rem; }
@@ -716,7 +713,7 @@
     padding-block: 1.4rem;
     font-family: var(--font-display);
     font-size: clamp(1.3rem, 2vw, 1.55rem);
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1.25;
   }
   .faq__item summary::-webkit-details-marker { display: none; }
@@ -743,7 +740,7 @@
     border-bottom: 1px solid var(--hairline);
   }
   .insight .tag { justify-self: start; }
-  .insight__title { font-size: clamp(1.55rem, 2.4vw, 2.1rem); line-height: 1.15; }
+  .insight__title { font-size: clamp(1.5rem, 2.2vw, 2rem); line-height: 1.2; }
   .insight__title a { text-decoration: none; cursor: default; background: linear-gradient(var(--gold-rule), var(--gold-rule)) left bottom / 0 1px no-repeat; transition: background-size 0.7s var(--ease-draw); }
   .insight:hover .insight__title a { background-size: 100% 1px; }
   .insight__teaser { color: var(--ink-muted); font-size: 1rem; max-width: 36rem; }

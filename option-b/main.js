@@ -1,157 +1,141 @@
-/* Option B: Modern counsel. Progressive enhancement only; the page works fully without this file. */
+/* Option B: Main Street firm. Progressive enhancement only; the page works fully without this file. */
 (function () {
   'use strict';
 
-  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* Quick exit: replace this page in history so Back doesn't return here. */
+  document.querySelectorAll('[data-quick-exit]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.location.replace(link.href);
+    });
+  });
 
-  /* ---------- The consultation path draws itself in once, when it is seen ---------- */
-  var path = document.querySelector('[data-path]');
-  if (path) {
-    if (reduceMotion || !('IntersectionObserver' in window)) {
-      path.classList.add('is-drawn');
-    } else {
-      var pathIo = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) { path.classList.add('is-drawn'); pathIo.disconnect(); }
-        });
-      }, { threshold: 0.35 });
-      pathIo.observe(path);
-      /* Never leave it half drawn when printing. */
-      window.addEventListener('beforeprint', function () { path.classList.add('is-drawn'); });
-    }
+  /* Mobile menu: close after choosing a link, and on Escape. */
+  var menu = document.querySelector('.mobile-menu');
+  if (menu) {
+    menu.addEventListener('click', function (e) {
+      if (e.target.closest('a')) menu.open = false;
+    });
+    menu.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && menu.open) {
+        menu.open = false;
+        menu.querySelector('summary').focus();
+      }
+    });
   }
 
-  /* ---------- Current-section highlight in the nav ---------- */
-  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.site-nav a[href^="#"]'));
-  if ('IntersectionObserver' in window && navLinks.length) {
-    var byId = {};
-    navLinks.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
-    var spy = new IntersectionObserver(function (entries) {
+  /* Motion idea: each section's oxblood rule draws in when the section enters view.
+     Text is never hidden; only the decorative rule animates. */
+  var sections = document.querySelectorAll('.section');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) {
+    sections.forEach(function (s) { s.classList.add('is-seen'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        var link = byId[entry.target.id];
-        if (!link) { return; }
         if (entry.isIntersecting) {
-          navLinks.forEach(function (a) { a.classList.remove('is-current'); });
-          link.classList.add('is-current');
+          entry.target.classList.add('is-seen');
+          io.unobserve(entry.target);
         }
       });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    Object.keys(byId).forEach(function (id) {
-      var section = document.getElementById(id);
-      if (section) { spy.observe(section); }
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
+    sections.forEach(function (s) { io.observe(s); });
+  }
+
+  /* Preview form: validate natively, show inline errors, never send anything. */
+  var form = document.querySelector('.consult-form');
+  if (!form) return;
+  var status = form.querySelector('#form-status');
+  var statusTimer = null;
+
+  var messages = {
+    name: 'Error: Please enter your name.',
+    phone: 'Error: Please enter a phone number.',
+    email: 'Error: Please enter an email address, like name@example.com.',
+    practice_area: 'Error: Please choose a practice area, or "Not sure".',
+    contact_method: 'Error: Please choose how you would like us to contact you.',
+    acknowledge: 'Error: Please check "I understand" to continue.'
+  };
+
+  function describedBy(el, id, add) {
+    var ids = (el.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean);
+    ids = ids.filter(function (x) { return x !== id; });
+    if (add) ids.push(id);
+    if (ids.length) el.setAttribute('aria-describedby', ids.join(' '));
+    else el.removeAttribute('aria-describedby');
+  }
+
+  function errorFor(name) {
+    var map = { name: 'f-name-err', phone: 'f-phone-err', email: 'f-email-err',
+      practice_area: 'f-area-err', contact_method: 'f-method-err', acknowledge: 'f-ack-err' };
+    return document.getElementById(map[name]);
+  }
+
+  function setError(name, show) {
+    var err = errorFor(name);
+    if (!err) return;
+    var inputs = form.querySelectorAll('[name="' + name + '"]');
+    var group = err.closest('.field');
+    if (show) {
+      var el = inputs[0];
+      var msg = messages[name];
+      if (name === 'email' && el.value && el.validity.typeMismatch) msg = 'Error: That email address looks incomplete. Please check it.';
+      err.textContent = msg;
+      err.hidden = false;
+    } else {
+      err.textContent = '';
+      err.hidden = true;
+    }
+    if (group) group.classList.toggle('is-invalid', show);
+    inputs.forEach(function (input) {
+      if (input.type !== 'radio') {
+        input.setAttribute('aria-invalid', show ? 'true' : 'false');
+      }
+      describedBy(input, err.id, show);
     });
   }
 
-  /* ---------- Insight cards are samples: links do nothing ---------- */
-  document.querySelectorAll('a[aria-disabled="true"]').forEach(function (a) {
-    a.addEventListener('click', function (e) { e.preventDefault(); });
+  function validateField(name) {
+    var inputs = form.querySelectorAll('[name="' + name + '"]');
+    if (!inputs.length) return true;
+    var valid = Array.prototype.every.call(inputs, function (i) { return i.checkValidity(); });
+    setError(name, !valid);
+    return valid;
+  }
+
+  var required = Object.keys(messages);
+
+  /* Clear an error as soon as the field becomes valid. */
+  form.addEventListener('input', function (e) {
+    var name = e.target.name;
+    if (required.indexOf(name) > -1 && !errorFor(name).hidden) validateField(name);
+  });
+  form.addEventListener('change', function (e) {
+    var name = e.target.name;
+    if (required.indexOf(name) > -1 && !errorFor(name).hidden) validateField(name);
   });
 
-  /* ---------- Preview form ---------- */
-  var form = document.getElementById('consult-form');
-  if (!form) { return; }
-  form.noValidate = true; /* JS shows its own inline errors; without JS the browser's native validation runs. */
-  var status = form.querySelector('.form-status');
-  var textarea = form.querySelector('#f-msg');
-  var counter = form.querySelector('[data-count]');
-
-  if (textarea && counter) {
-    var updateCount = function () { counter.textContent = textarea.value.length + ' of 300 used'; };
-    textarea.addEventListener('input', updateCount);
-    updateCount();
-  }
-
-  /* Each check maps a control (or radio group) to its inline error message. */
-  var checks = [
-    { el: form.querySelector('#f-name'), err: 'f-name-err' },
-    { el: form.querySelector('#f-phone'), err: 'f-phone-err' },
-    { el: form.querySelector('#f-email'), err: 'f-email-err' },
-    { el: form.querySelector('#f-area'), err: 'f-area-err' },
-    { el: form.querySelector('#f-time'), err: 'f-time-err' },
-    { group: 'contact_method', wrap: form.querySelector('.field--radios'), err: 'f-method-err' },
-    { el: form.querySelector('#f-msg'), err: 'f-msg-err' },
-    { el: form.querySelector('#f-ack'), wrap: form.querySelector('.field--check'), err: 'f-ack-err' }
-  ];
-
-  function isValid(check) {
-    if (check.group) {
-      return !!form.querySelector('input[name="' + check.group + '"]:checked');
-    }
-    if (check.el.type !== 'checkbox' && check.el.value.trim() === '' && check.el.required) { return false; }
-    return check.el.checkValidity();
-  }
-
-  // Point aria-describedby at an error only while it is showing, so it isn't read on first visit.
-  function describe(el, id, on) {
-    if (!el || !id) { return; }
-    var ids = (el.getAttribute('aria-describedby') || '').split(/\s+/).filter(function (x) { return x && x !== id; });
-    if (on) { ids.push(id); }
-    if (ids.length) { el.setAttribute('aria-describedby', ids.join(' ')); } else { el.removeAttribute('aria-describedby'); }
-  }
-
-  function setState(check, ok) {
-    var msg = document.getElementById(check.err);
-    if (msg) { msg.hidden = ok; }
-    describe(check.group ? check.wrap : check.el, check.err, !ok);
-    if (check.group) {
-      check.wrap.classList.toggle('is-invalid', !ok);
-      form.querySelectorAll('input[name="' + check.group + '"]').forEach(function (r) {
-        if (ok) { r.removeAttribute('aria-invalid'); } else { r.setAttribute('aria-invalid', 'true'); }
-        describe(r, check.err, !ok);
-      });
-      return;
-    }
-    if (ok) { check.el.removeAttribute('aria-invalid'); } else { check.el.setAttribute('aria-invalid', 'true'); }
-    if (check.wrap) { check.wrap.classList.toggle('is-invalid', !ok); }
-  }
-
-  function firstFocusable(check) {
-    return check.group ? form.querySelector('input[name="' + check.group + '"]') : check.el;
-  }
-
-  /* Clear an error as soon as the visitor fixes it. */
-  checks.forEach(function (check) {
-    var targets = check.group
-      ? Array.prototype.slice.call(form.querySelectorAll('input[name="' + check.group + '"]'))
-      : [check.el];
-    targets.forEach(function (t) {
-      var evt = (t.tagName === 'SELECT' || t.type === 'radio' || t.type === 'checkbox') ? 'change' : 'input';
-      t.addEventListener(evt, function () {
-        var msg = document.getElementById(check.err);
-        if (msg && !msg.hidden && isValid(check)) { setState(check, true); }
-      });
-    });
-  });
-
-  /* Quick exit: replace this page in history so Back doesn't return here. The plain link works without JS. */
-  var exit = document.querySelector('.quick-exit');
-  if (exit) {
-    exit.addEventListener('click', function (e) {
-      e.preventDefault();
-      window.location.replace(exit.href);
-    });
-  }
-
-  var statusTimer;
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     clearTimeout(statusTimer);
     status.textContent = '';
 
-    var firstBad = null;
-    checks.forEach(function (check) {
-      var ok = isValid(check);
-      setState(check, ok);
-      if (!ok && !firstBad) { firstBad = check; }
+    var firstInvalid = null;
+    required.forEach(function (name) {
+      if (!validateField(name) && !firstInvalid) firstInvalid = form.querySelector('[name="' + name + '"]');
     });
 
-    if (firstBad) {
-      var target = firstFocusable(firstBad);
-      if (target) { target.focus(); }
+    if (firstInvalid) {
+      firstInvalid.focus();
       return;
     }
 
-    // Set a tick after clearing so a repeat submit is announced again.
-    statusTimer = setTimeout(function () { status.textContent = 'Preview only. Nothing was sent.'; }, 100);
+    /* Honeypot filled: treat as a bot and silently do nothing (at launch the server discards it too). */
+    if (form.elements.company_website && form.elements.company_website.value) return;
+
+    /* Re-set the text after a short delay so a repeat submit is announced again. */
+    statusTimer = setTimeout(function () {
+      status.textContent = 'Preview only. Nothing was sent.';
+    }, 100);
   });
 })();
